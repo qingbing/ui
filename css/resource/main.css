@@ -1,0 +1,21 @@
+.center-block{display:block;margin-right:auto;margin-left:auto}
+.pull-right{float:right!important}
+.pull-left{float:left!important}
+.hide{display:none!important}
+.show{display:block!important}
+.invisible{visibility:hidden}
+.text-hide{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}
+.hidden{display:none!important}
+
+/* close */
+.close{float:right;font-size:21px;font-weight:700;line-height:1;color:#000;text-shadow:0 1px 0 #fff;filter:alpha(opacity=20);opacity:.2}
+.close:focus,
+.close:hover{color:#000;text-decoration:none;cursor:pointer;filter:alpha(opacity=50);opacity:.5}
+button.close{-webkit-appearance:none;padding:0;cursor:pointer;background:0 0;border:0}
+/* caret */
+.caret{display:inline-block;width:0;height:0;margin-left:2px;vertical-align:middle;border-top:4px dashed;border-top:4px solid\9;border-right:4px solid transparent;border-left:4px solid transparent}
+/* badge */
+.badge{display:inline-block;min-width:10px;padding:3px 7px;font-size:12px;font-weight:700;line-height:1;color:#fff;text-align:center;white-space:nowrap;vertical-align:middle;background-color:#777;border-radius:10px}
+.badge:empty{display:none}
+a.badge:focus,
+a.badge:hover{color:#fff;text-decoration:none;cursor:pointer}

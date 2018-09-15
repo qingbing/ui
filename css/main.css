@@ -1,0 +1,27 @@
+@import url("resource/reset.css"); /* todo */
+@import url("resource/main.css"); /* todo */
+@import url("resource/img.css");
+@import url("resource/text.css");
+@import url("resource/bg.css");
+@import url("resource/row-col.css");
+@import url("resource/table.css");
+@import url("resource/button.css");
+@import url("resource/breadcrumb.css");
+@import url("resource/page.css");
+@import url("resource/label.css");
+@import url("resource/jumbotron.css");
+@import url("resource/alert.css");
+@import url("resource/panel.css");
+@import url("resource/visible.css");
+@import url("resource/embed.css");
+@import url("resource/media.css");
+@import url("resource/progress.css");
+@import url("resource/thumbnail.css");
+@import url("resource/list.css");
+@import url("resource/form.css");
+@import url("resource/blockquote.css");
+
+/* 当不操作时，滚动条消失 */
+/*@-ms-viewport {width:device-width;}*/
+
+
