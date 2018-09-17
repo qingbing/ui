@@ -30,31 +30,17 @@ var Loader = {
             callback();
         }
     },
-    player: function ($triggers) {
-        this.__loadPlugin('player', '/plugins/player/css/plugin.css',
-            '/plugins/player/bootstrap.player.js', function () {
-                $triggers.player();
+    template: function ($triggers) {
+        this.__loadPlugin('template', '/plugins/template/css/main.css',
+            '/plugins/template/jquery.template.js', function () {
+                $triggers.template();
             });
     },
-    tab: function ($triggers) {
-        this.__loadPlugin('tab', '/plugins/tab/css/plugin.css',
-            '/plugins/tab/bootstrap.tab.js', function () {
-                $triggers.bootTab();
+    dropdown: function ($triggers) {
+        this.__loadPlugin('dropdown', '/plugins/dropdown/css/main.css',
+            '/plugins/dropdown/jquery.dropdown.js', function () {
+                $triggers.dropdown();
             });
-    },
-    menu: function ($triggers) {
-        this.__loadPlugin('tab', '/plugins/menu/css/plugin.css',
-            '/plugins/menu/bootstrap.menu.js', function () {
-                $triggers.menu();
-            });
-    },
-    datePicker: function () {
-        this.loadCss('/plugins/daterangepicker/daterangepicker.min.css');
-        this.loadMoment(function () {
-            Loader.loadJs('/plugins/daterangepicker/daterangepicker.min.js', function () {
-                Loader.loadJs('/plugins/daterangepicker/bootstrap.picker.js');
-            });
-        });
     },
     loadMoment: function (callback) {
         if (this.__isLoadedMoment) {
@@ -66,18 +52,93 @@ var Loader = {
         });
     },
     configs: {
-        'tab': '.w-tab',
-        'player': '.w-player',
-        'menu': '.w-menu',
-        'datePicker': '.h-datePicker'
+        'template': '.w-template',
+        'dropdown': '.w-dropdown',
+        'navbar': '.w-navbar'
     }
 };
 
-(function ($) {
+var ParamsManager = function (wn) {
+    /**
+     * 触发元素保存参数的名称
+     * @type {string}
+     * @private
+     */
+    this.__dataName = "__data__" + wn + "__";
+    /**
+     * 当前触发器
+     * @type {jquery} element
+     * @private
+     */
+    this.__currentTrigger = undefined;
+    /**
+     * 所有触发器
+     * @type {Array}
+     * @private
+     */
+    this.__triggers = [];
+    /**
+     * 添加触发器
+     * @param $trigger
+     */
+    this.addTrigger = function ($trigger) {
+        this.__triggers.push($trigger);
+    };
+    /**
+     * 获取当前触发器
+     * @returns {jquery}
+     */
+    this.getCurrentTrigger = function () {
+        return this.__currentTrigger;
+    };
+    /**
+     * 设置当前触发器
+     * @returns {jquery}
+     */
+    this.setCurrentTrigger = function ($trigger) {
+        this.__currentTrigger = $trigger;
+    };
+    /**
+     * 获取触发器参数
+     * @param $trigger
+     * @returns {boolean}
+     */
+    this.getOption = function ($trigger) {
+        if (!H.isDefined($trigger)) {
+            $trigger = this.getCurrentTrigger();
+        }
+        if (!H.isDefined($trigger)) {
+            return false;
+        }
+        return $trigger.data(this.__dataName);
+    };
+    /**
+     * 设置触发器参数
+     * @param $trigger
+     * @param op
+     */
+    this.setOption = function ($trigger, op) {
+        if (!H.isDefined($trigger)) {
+            $trigger = this.getCurrentTrigger();
+        }
+        $trigger.data(this.__dataName, op);
+    };
+    /**
+     * 遍历触发器并让触发器执行函数
+     * @param callback
+     */
+    this.each = function (callback) {
+        for (var i in this.__triggers) {
+            callback(this.__triggers[i]);
+        }
+    }
+};
+
+jQuery(document).ready(function ($) {
     H.each(Loader.configs, function (key, target) {
         var $targets = $(target);
         if ($targets.length > 0 && H.isFunction(Loader[key])) {
             Loader[key]($targets);
         }
     });
-})(jQuery);
+});
