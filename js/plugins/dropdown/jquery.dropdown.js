@@ -11,33 +11,42 @@
             if (H.isDefined(tp)) {
                 return tp;
             }
-            var $target;
-            if (!H.isEmpty(op.target)) {
-                $target = $(op.target);
-                if ($target) {
-                    op.$target = $target;
+            var $target = $trigger.children('.w-dropdown-menu');
+            if ($target) {
+                op.$target = $target;
+            } else {
+                return false;
+            }
+            if (H.isDefined(op.callback)) {
+                op.callback = H.toJson(op.callback);
+                if (!H.isFunction(op.callback)) {
+                    delete op.callback;
                 }
             }
-            if (!H.isDefined(op.$target)) {
-                $target = $trigger.next('.w-dropdown-menu');
-                if ($target) {
-                    op.$target = $target;
-                } else {
-                    return false;
-                }
+            var $option = $trigger.children('.w-dropdown-option');
+            if ($option.length > 0) {
+                op.isOption = true;
+                op.$option = $option;
+            } else {
+                op.isOption = false;
             }
             PM.setOption($trigger, op);
             PM.addTrigger($trigger);
             $trigger.on('click', L.events.triggerClick);
+            op.$target.children('li').on('click', L.events.menuLiClick);
             return op;
         },
         run: function ($trigger, op) {
         },
         func: {
-            show: function (op) {
+            show: function ($trigger) {
+                $trigger.addClass('active');
+                var op = PM.getOption($trigger);
                 op.$target.show();
             },
-            hide: function (op) {
+            hide: function ($trigger) {
+                $trigger.removeClass('active');
+                var op = PM.getOption($trigger);
                 op.$target.hide();
             }
         },
@@ -47,14 +56,40 @@
                 PM.each(function ($trigger) {
                     var op = PM.getOption($trigger);
                     if ($trigger.is($curTrigger)) {
-                        L.func.show(op);
-                        PM.setCurrentTrigger($curTrigger);
-                    } else if ($trigger) {
-                        L.func.hide(op);
+                        // 点击了该触发器
+                        if (op.$target.is(':visible')) {
+                            L.func.hide($trigger);
+                            PM.setCurrentTrigger(undefined);
+                        } else {
+                            L.func.show($trigger);
+                            PM.setCurrentTrigger($curTrigger);
+                        }
+                    } else if (0 === $curTrigger.closest($trigger).length) {
+                        L.func.hide($trigger);
                     }
                 });
-                e.preventDefault && e.preventDefault();
-                e.stopPropagation && e.stopPropagation();
+                H.stopPropagation(e);
+            },
+            menuLiClick: function (e) {
+                var $li = $(this);
+                if ($li.hasClass('disabled') || $li.hasClass('divider')) {
+                    H.preventDefault(e);
+                    H.stopPropagation(e);
+                    return;
+                }
+                var op = PM.getOption();
+                if (op.isOption) {
+                    op.$option.html($li.text());
+                    if (H.isDefined(op.fieldTarget)) {
+                        $(op.fieldTarget).val($li.data('value'));
+                    }
+                }
+                if (op.callback) {
+                    op.callback(op, $li);
+                    H.preventDefault(e);
+                } else {
+                    return true;
+                }
             }
         }
     };
@@ -66,19 +101,23 @@
         if (!op) {
             return;
         }
+        var $curTrigger = PM.getCurrentTrigger();
         PM.setCurrentTrigger(undefined);
         if (!op.$target.is(':visible')) {
             return;
         }
         if (0 === $(e.target).closest(op.$target).length) {
-            L.func.hide(op);
+            L.func.hide($curTrigger);
+            return;
         } else if (true === op.targetClose) {
-            L.func.hide(op);
+            L.func.hide($curTrigger);
         }
+        H.preventDefault(e);
+        H.stopPropagation(e);
     });
 
     /**
-     * w-target : #id, .class
+     * w-field-target : #id, .class（用于选择类型）
      * w-target-close : false : 点击到显示目标是是否关闭，默认关闭
      */
     $.fn.extend({

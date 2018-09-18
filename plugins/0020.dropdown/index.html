@@ -10,36 +10,106 @@
     <script src="../../js/holder.min.js"></script>
     <script src="../../js/h.js"></script>
     <script src="../../js/autoload.js"></script>
+    <link rel="stylesheet" href="./../../js/plugins/dropdown/css/main.css">
     <title>Dropdown</title>
+    <script type="text/javascript">
+        function CallbackMenu(op, $li) {
+            console.log(op);
+            console.log($li.html());
+        }
+    </script>
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div class="label label-danger w-dropdown">admin <span class="caret"></span></div>
-            <ul class="w-dropdown-menu list-unstyled" style="display: none">
-                <li><a href="#">Personal Information</a></li>
-                <li><a href="#">Reset Password</a></li>
-                <li><a href="#">Change Information</a></li>
-            </ul>
+            <div class="w-dropdown" data-callback="CallbackMenu">
+                <div class="label label-danger">
+                    admin <span class="caret"></span>
+                </div>
+                <ul class="w-dropdown-menu">
+                    <li><a href="#">Personal Information</a></li>
+                    <li class="divider"></li>
+                    <li class="active"><a href="#">Active Option</a></li>
+                    <li class="disabled"><a href="#">Disabled Option</a></li>
+                    <li><a href="#">Reset Password</a></li>
+                    <li><a href="#">Change Information</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="input-group">
+                <div class="input-group-addon w-dropdown" data-field-target="#site">
+                    <em class="w-dropdown-option">more<span class="caret"></span></em>
+                    <input type="hidden" name="site" id="site">
+                    <ul class="w-dropdown-menu">
+                        <li class="data" data-value="baidu.com">baidu.com</li>
+                        <li class="data" data-value="google.com">google.com</li>
+                        <li class="divider"></li>
+                        <li class="data" data-value="php.com">php.com</li>
+                    </ul>
+                </div>
+                <input type="text" class="form-control">
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">Go !</button>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-3">
-            <div class="label label-danger w-dropdown" data-target-close="false">admin <span class="caret"></span></div>
-            <ul class="w-dropdown-menu list-unstyled" style="display: none">
-                <li><a href="#">Personal Information</a></li>
-                <li><a href="#">Reset Password</a></li>
-                <li><a href="#">Change Information</a></li>
-            </ul>
+            <div class="mydropdown">
+                <div class="label label-danger">admin <span class="caret"></span></div>
+                <ul class="w-dropdown-menu">
+                    <li><a href="#">Personal Information</a></li>
+                    <li><a href="#">Reset Password</a></li>
+                    <li><a href="#">Change Information</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 300px;">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="w-dropdown up">
+                <div class="label label-danger up">
+                    admin <span class="caret"></span>
+                </div>
+                <ul class="w-dropdown-menu">
+                    <li><a href="#">Personal Information</a></li>
+                    <li class="data">Just Selection</li>
+                    <li class="divider"></li>
+                    <li class="active"><a href="#">Active Option</a></li>
+                    <li class="disabled"><a href="#">Disabled Option</a></li>
+                    <li><a href="#">Reset Password</a></li>
+                    <li><a href="#">Change Information</a></li>
+                </ul>
+            </div>
+
         </div>
 
         <div class="col-md-3">
-            <div class="label label-danger" id="mydropdown">admin <span class="caret"></span></div>
-            <ul class="w-dropdown-menu list-unstyled" style="display: none">
-                <li><a href="#">Personal Information</a></li>
-                <li><a href="#">Reset Password</a></li>
-                <li><a href="#">Change Information</a></li>
-            </ul>
+            <div class="w-dropdown w-dropdown-up" data-target-close="false">
+                <div class="label label-danger">admin <span class="caret"></span></div>
+                <ul class="w-dropdown-menu w-dropdown-right">
+                    <li><a href="#">Personal Information</a></li>
+                    <li><a href="#">Reset Password</a></li>
+                    <li><a href="#">Change Information</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="mydropdown">
+                <label class="label label-danger up">admin <span class="caret"></span></label>
+                <ul class="w-dropdown-menu">
+                    <li><a href="#">Personal Information</a></li>
+                    <li><a href="#">Reset Password</a></li>
+                    <li><a href="#">Change Information</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

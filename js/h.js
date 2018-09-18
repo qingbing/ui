@@ -357,6 +357,15 @@ if (typeof md5 === 'undefined'){
         }
     };
 
+    var Event = {
+        preventDefault: function (e) {
+            e.preventDefault && e.preventDefault();
+        },
+        stopPropagation: function (e) {
+            e.stopPropagation && e.stopPropagation();
+        }
+    };
+
     window.H = {
         date: '2018-08-21',
         version: '1.0',
@@ -392,6 +401,9 @@ if (typeof md5 === 'undefined'){
         loadCss: Doc.loadCss,
         loadJs: Doc.loadJs,
         remoteJson: Doc.remoteJson,
+
+        preventDefault: Event.preventDefault,
+        stopPropagation: Event.stopPropagation,
 
         reload: Win.reload,
         redirect: Win.redirect,

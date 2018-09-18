@@ -13,7 +13,7 @@ var Loader = {
     loadJs: function (path, callback, id) {
         H.loadJs(H.jsPath() + path, callback, id);
     },
-    __loadPlugin: function (cName, css, js, callback) {
+    __loadPlugin: function (cName, js, callback, css) {
         if (!this.__loadedPlugins[cName]) {
             this.__loadedPlugins[cName] = true;
             H.isEmpty(css) || (this.loadCss(css));
@@ -30,16 +30,22 @@ var Loader = {
             callback();
         }
     },
-    template: function ($triggers) {
-        this.__loadPlugin('template', '/plugins/template/css/main.css',
-            '/plugins/template/jquery.template.js', function () {
-                $triggers.template();
-            });
-    },
     dropdown: function ($triggers) {
-        this.__loadPlugin('dropdown', '/plugins/dropdown/css/main.css',
+        this.__loadPlugin('dropdown',
             '/plugins/dropdown/jquery.dropdown.js', function () {
                 $triggers.dropdown();
+            });
+    },
+    navbar: function ($triggers) {
+        this.__loadPlugin('navbar',
+            '/plugins/navbar/jquery.navbar.js', function () {
+                $triggers.navbar();
+            });
+    },
+    template: function ($triggers) {
+        this.__loadPlugin('template',
+            '/plugins/template/jquery.template.js', function () {
+                $triggers.template();
             });
     },
     loadMoment: function (callback) {
@@ -135,6 +141,10 @@ var ParamsManager = function (wn) {
 };
 
 jQuery(document).ready(function ($) {
+    $('.divider,.disabled,[disabled]').on('click', function (e) {
+        H.preventDefault(e);
+        H.stopPropagation(e);
+    });
     H.each(Loader.configs, function (key, target) {
         var $targets = $(target);
         if ($targets.length > 0 && H.isFunction(Loader[key])) {
