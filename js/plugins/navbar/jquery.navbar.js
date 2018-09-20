@@ -2,9 +2,7 @@
     var PM = new ParamsManager('navbar');
     var L = {
         config: {
-            ops: {
-                targetClose: true
-            }
+            ops: {}
         },
         initOp: function ($navbar, op) {
             var $trigger = $navbar.find('.w-navbar-ctrl');
