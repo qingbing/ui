@@ -21,4 +21,5 @@ button.close{-webkit-appearance:none;padding:0;cursor:pointer;background:0 0;bor
 a.badge:focus,
 a.badge:hover{color:#fff;text-decoration:none;cursor:pointer}
 
+/* for jquery.alert */
 .alert-box{width:50%;position:absolute;right:0;top:0;padding:10px;}

@@ -76,12 +76,15 @@ var ParamsManager = function (wn) {
         }
     }
 };
-var CP = {
-    post: function (ajaxUrl, postData, callback, method) {
+/**
+ * ProjectFunction
+ */
+var PF = {
+    ajax: function (ajaxUrl, postData, callback, method) {
         if (!H.isDefined(method)) {
             method = 'POST';
         }
-        var async = false, R; // 非异步（等待执行）
+        var async = false, R = false; // 非异步（等待执行）
         if (H.isFunction(callback)) {
             // 当拥有回调函数是，表示异步
             async = true;
@@ -94,12 +97,11 @@ var CP = {
             data: postData,
             success: function (rs) {
                 if (0 !== rs.code) {
-                    alert(rs.message);// todo
-                }
-                if (0 === rs.code) {
-                    r = true;
+                    $.alert(rs.message, 'danger');
+                } else if (async) {
+                    callback(rs.data);
                 } else {
-                    r = rs.message;
+                    R = rs.data;
                 }
             }
         });
