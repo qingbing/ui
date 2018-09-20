@@ -169,6 +169,12 @@ var Loader = {
                 $triggers.tab();
             });
     },
+    checkbox: function ($triggers) {
+        this.__loadPlugin('checkbox',
+            '/plugins/checkbox/jquery.checkbox.js', function () {
+                $triggers.checkbox();
+            });
+    },
     template: function ($triggers) {
         this.__loadPlugin('template',
             '/plugins/template/jquery.template.js', function () {
@@ -189,6 +195,7 @@ var Loader = {
         'navbar': '.w-navbar',
         'ajaxPage': '.w-ajax-page',
         'tab': '.w-tab',
+        'checkbox': '.w-checkbox',
         'template': '.w-template'
     }
 };
