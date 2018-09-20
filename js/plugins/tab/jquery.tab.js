@@ -4,7 +4,7 @@
         config: {
             ops: {
                 event: 'click',
-                postData: '',
+                postData: {},
                 callback: ''
             },
             tabLiOps: {
@@ -43,7 +43,12 @@
                     index = pi;
                 }
                 // 参数确认
-                var ps = $.extend({}, L.config.tabLiOps, $this.data());
+                var data = $this.data();
+                if (!H.isObject(data.postData)) {
+                    data.postData = H.toJson(data.postData);
+                }
+                var ps = $.extend(true, {}, L.config.tabLiOps, data);
+                ps.postData = $.extend(true, {}, op.postData, ps.postData);
                 ps.callback = H.toJson(ps.callback);
                 if (!H.isFunction(ps.callback)) {
                     if (H.isFunction(op.callback)) {
@@ -52,10 +57,6 @@
                         delete ps.callback;
                     }
                 }
-                if (!H.isObject(ps.postData)) {
-                    ps.postData = H.toJson(ps.postData);
-                }
-                ps.postData = $.extend({}, op.postData, ps.postData);
                 ps.pi = pi;
                 ps.$headLis = $headLis;
                 ps.$contentLis = $contentLis;
@@ -108,11 +109,15 @@
      */
     $.fn.extend({
         tab: function (ops) {
-            ops = $.extend({}, L.config.ops, ops);
+            ops = $.extend(true, {}, L.config.ops, ops);
             $(this).each(function () {
                 var $this = $(this);
                 // 扩展参数设置
-                L.run($this, L.initOp($this, $.extend({}, ops, $this.data())));
+                var data = $this.data();
+                if (data.postData) {
+                    data.postData = H.toJson(data.postData);
+                }
+                L.run($this, L.initOp($this, $.extend(true, {}, ops, data)));
             });
             return this;
         }
