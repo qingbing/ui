@@ -122,11 +122,12 @@
      */
     $.fn.extend({
         dropdown: function (ops) {
-            ops = $.extend({}, L.config.ops, ops);
+            ops = $.extend(true, {}, L.config.ops, ops);
             $(this).each(function () {
                 var $this = $(this);
                 // 扩展参数设置
-                L.run($this, L.initOp($this, $.extend({}, ops, $this.data())));
+                var data = $this.data();
+                L.run($this, L.initOp($this, $.extend(true, {}, ops, data)));
             });
             return this;
         }
