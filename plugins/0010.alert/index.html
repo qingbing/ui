@@ -12,9 +12,36 @@
     <script src="../../js/autoload.js"></script>
     <link rel="stylesheet" href="./../../js/plugins/template/css/main.css">
     <title>Alert</title>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $('#alert-info').on('click', function (e) {
+                $.alert('This is info alert message!');
+            });
+            $('#alert-warning').on('click', function (e) {
+                $.alert('This is warning alert message!', 'warning');
+            });
+            $('#alert-success').on('click', function (e) {
+                $.alert('This is success alert message!', 'success');
+            });
+            $('#alert-danger').on('click', function (e) {
+                $.alert('This is danger alert message!', 'danger');
+            });
+        });
+    </script>
 </head>
 <body>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="btn-group btn-group-justified">
+                <a href="#" class="btn btn-info" id="alert-info">alert-info</a>
+                <a href="#" class="btn btn-warning" id="alert-warning">alert-warning</a>
+                <a href="#" class="btn btn-success" id="alert-success">alert-success</a>
+                <a href="#" class="btn btn-danger" id="alert-danger">alert-danger</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--<div class="alert alert-success"><span class="close">&times;</span>This is .alert-success Content</div>-->
 <!--<div class="alert alert-warning"><span class="close">&times;</span>This is .alert-warning Content</div>-->
