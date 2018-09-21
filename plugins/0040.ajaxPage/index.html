@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/main.css">
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/holder.min.js"></script>
+    <script src="../../js/h.js"></script>
+    <script src="../../js/autoload.js"></script>
+    <link rel="stylesheet" href="./../../js/plugins/dropdown/css/main.css">
+    <title>ajaxPage</title>
+    <script type="text/javascript">
+        function beforeCallback(op) {
+            // console.log("beforeCallback");
+            return true;
+        }
+
+        function beforeRendCallback(op, data) {
+            // console.log(111)
+            H.each(data, function (i, v) {
+                if (v.callback) {
+                    v.callback = "<pre>" + v.callback + "</pre>";
+                }
+            });
+            return true;
+        }
+
+        function afterRendCallback(op) {
+            // console.log("afterRendCallback");
+            return true;
+        }
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="w-ajax-page" data-cache="true"
+         data-ajax-url="tablePagination.php"
+         data-fields="{'field1':'#field1','field2':'#field2'}"
+         data-form="#queryForm4"
+         data-type="table"
+         data-head-url="head.php"
+         data-head-post-data="{head:true, name:111}"
+         data-query-btn="#ajaxSearchBtn4"
+         data-before-callback="beforeCallback"
+         data-before-rend-callback="beforeRendCallback"
+         data-after-rend-callback="afterRendCallback"
+         data-pagination="true"
+         data-post-data="{post1:5, post2:'form2'}">
+        <div class="row">
+            <form action="#" class="form-inline" id="queryForm4">
+                <dl class="form-group inline">
+                    <dt class="control-label">Username:</dt>
+                    <dd><input type="text" name="username" value="111" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dt class="control-label">Sex:</dt>
+                    <dd><input type="text" name="sex" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dt class="control-label">age:</dt>
+                    <dd><input type="text" name="age" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dd>
+                        <button class="btn btn-primary" id="ajaxSearchBtn4"><span class="fa fa-search"></span>Search
+                        </button>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-hover w-ajax-page-table"></table>
+        </div>
+        <div class="row">
+            <ul class="w-ajax-page-pagination pagination"></ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="w-ajax-page" data-cache="true"
+         data-ajax-url="table.php"
+         data-fields="{'field1':'#field1','field2':'#field2'}"
+         data-form="#queryForm5"
+         data-type="table"
+         data-head-url="head.php"
+         data-head-post-data="{head:true, name:111}"
+         data-query-btn="#ajaxSearchBtn5"
+         data-before-callback="beforeCallback"
+         data-before-rend-callback="beforeRendCallback"
+         data-after-rend-callback="afterRendCallback"
+         data-post-data="{post1:5, post2:'form2'}">
+        <div class="row">
+            <form action="#" class="form-inline" id="queryForm5">
+                <dl class="form-group inline">
+                    <dt class="control-label">Username:</dt>
+                    <dd><input type="text" name="username" value="111" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dt class="control-label">Sex:</dt>
+                    <dd><input type="text" name="sex" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dt class="control-label">age:</dt>
+                    <dd><input type="text" name="age" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dd>
+                        <button class="btn btn-primary" id="ajaxSearchBtn5"><span class="fa fa-search"></span>Search
+                        </button>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-hover w-ajax-page-table"></table>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="w-ajax-page" data-cache="true"
+         data-ajax-url="tableEmpty.php"
+         data-fields="{'field1':'#field1','field2':'#field2'}"
+         data-form="#queryForm6"
+         data-type="table"
+         data-head-url="head.php"
+         data-head-post-data="{head:true, name:111}"
+         data-query-btn="#ajaxSearchBtn6"
+         data-before-callback="beforeCallback"
+         data-before-rend-callback="beforeRendCallback"
+         data-after-rend-callback="afterRendCallback"
+         data-post-data="{post1:5, post2:'form2'}">
+        <div class="row">
+            <div class="col-md-2 form-control-static">
+                查询字段:
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="field1" value="field_1" class="form-control">
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="field2" value="field_2" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <form action="#" class="form-inline" id="queryForm6">
+                <dl class="form-group inline">
+                    <dt class="control-label">Username:</dt>
+                    <dd><input type="text" name="username" value="111" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dt class="control-label">Sex:</dt>
+                    <dd><input type="text" name="sex" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dt class="control-label">age:</dt>
+                    <dd><input type="text" name="age" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dd>
+                        <button class="btn btn-primary" id="ajaxSearchBtn6"><span class="fa fa-search"></span>Search
+                        </button>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-hover w-ajax-page-table"></table>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="w-ajax-page" data-cache="true"
+         data-ajax-url="contentPage.php"
+         data-fields="{'field1':'#field1'}"
+         data-form="#queryForm7"
+         data-type="content"
+         data-pagination="true"
+         data-query-btn="#ajaxSearchBtn7"
+         data-post-data="{post1:7, post2:'form3'}">
+        <div class="row">
+            <form action="#" class="form-inline" id="queryForm7">
+                <dl class="form-group inline">
+                    <dt class="control-label">Username:</dt>
+                    <dd><input type="text" name="username" value="111" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dt class="control-label">Sex:</dt>
+                    <dd><input type="text" name="sex" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dt class="control-label">age:</dt>
+                    <dd><input type="text" name="age" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dd>
+                        <button class="btn btn-primary" id="ajaxSearchBtn7"><span class="fa fa-search"></span>Search
+                        </button>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+        <div class="row">
+            <div class="w-ajax-page-content"></div>
+        </div>
+        <div class="row">
+            <ul class="w-ajax-page-pagination pagination"></ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="w-ajax-page" data-cache="true"
+         data-ajax-url="content.php"
+         data-fields="{'field1':'#field1'}"
+         data-form="#queryForm8"
+         data-type="content"
+         data-query-btn="#ajaxSearchBtn8"
+         data-post-data="{post1:7, post2:'form2'}">
+        <div class="row">
+            <form action="#" class="form-inline" id="queryForm8">
+                <dl class="form-group inline">
+                    <dt class="control-label">Username:</dt>
+                    <dd><input type="text" name="username" value="111" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dt class="control-label">Sex:</dt>
+                    <dd><input type="text" name="sex" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dt class="control-label">age:</dt>
+                    <dd><input type="text" name="age" class="form-control"></dd>
+                </dl>
+                <dl class="form-group inline">
+                    <dd>
+                        <button class="btn btn-primary" id="ajaxSearchBtn8"><span class="fa fa-search"></span>Search
+                        </button>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+        <div class="row">
+            <div class="w-ajax-page-content"></div>
+        </div>
+        <ul class="w-ajax-page-pagination pagination"></ul>
+    </div>
+</div>
+</body>
+</html>

@@ -96,7 +96,7 @@ var PF = {
             dataType: 'json',
             data: postData,
             success: function (rs) {
-                if (0 !== rs.code) {
+                if (0 !== parseInt(rs.code)) {
                     $.alert(rs.message, 'danger');
                 } else if (async) {
                     callback(rs.data);
@@ -108,6 +108,19 @@ var PF = {
         if (false === async) {
             return R;
         }
+    },
+    /**
+     * 获取表单元素值
+     * @param $form
+     * @returns {{}}
+     */
+    getFormData: function ($form) {
+        var nv = $form.serializeArray();
+        var R = {};
+        H.each(nv, function (i, v) {
+            R[v.name] = v.value;
+        });
+        return R;
     }
 };
 /**
