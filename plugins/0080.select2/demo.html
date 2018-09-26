@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../js/plugins/select2/select2.css">
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/holder.min.js"></script>
+    <script src="../../js/h.js"></script>
+    <script src="../../js/autoload.js"></script>
+    <script src="../../js/plugins/select2/select2.min.js"></script>
+    <title>Select2</title>
+    <script type="text/javascript">
+        $(function () {
+            var opts = $("#select0").html(), opts2 = "<option></option>" + opts;
+            $("select.populate").each(function () {
+                var e = $(this);
+                e.html(e.hasClass("placeholder") ? opts2 : opts);
+            });
+            $(document).ready(function () {/*
+                $('#select1_0').select2({
+                    width: "100%",
+                    placeholder: "单选,不清除"
+                });
+                $('#select1_1').select2({
+                    width: "100%",
+                    placeholderOption: "first",
+                    placeholder: "单选,清除",
+                    allowClear: true
+                }).select2('val', ['HI']);
+                $('#select1_2').select2({
+                    width: "100%",
+                    placeholderOption: "first",
+                    placeholder: "单选,清除",
+                    allowClear: true,
+                    data: [
+                        {'id': 1, 'text': 'test111'},
+                        {'id': 2, 'text': 'test222'},
+                        {'id': 3, 'text': 'test333'}
+                    ]
+                    // minimumInputLength: 1
+                }).select2('val', [2]);*/
+                $('#select1_3').select2({
+                    width: "100%",
+                    placeholderOption: "first",
+                    placeholder: "单选,清除",
+                    allowClear: true,
+                    // minimumInputLength: 2,
+                    initSelection: function (element, callback) {
+                        PF.ajax('query.php', {id: element.val()}, function (data) {
+                            callback(data[0]);
+                        });
+                    },
+                    query: function (query) {
+                        PF.ajax('query.php', {keyword: query.term}, function (data) {
+                            query.callback({
+                                results: data
+                            });
+                        });
+                    }
+                });
+                // $('#select1_3').select2("data", {id: "CA", text: "California"});
+                /*$('#select2_0').select2({
+                    placeholder: "Select a State",
+                    width: "100%",
+                    allowClear: true
+                });
+                $('#select2_1').select2({
+                    placeholder: "多选,清除",
+                    placeholderOption: "first",
+                    width: "100%",
+                    allowClear: true
+                }).select2('val', ['HI']);
+                $('#select2_2').select2({
+                    width: "100%",
+                    placeholderOption: "first",
+                    placeholder: "多选,清除",
+                    allowClear: true,
+                    multiple: true,
+                    minimumInputLength: 2,
+                    query: function (query) {
+                        PF.ajax('query.php', {keyword: query.term}, function (data) {
+                            query.callback({
+                                results: data
+                            });
+                        });
+                    }
+                });*/
+            });
+        });
+    </script>
+</head>
+<body>
+<div style="display: none;">
+    <select id="select0" multiple="multiple">
+        <optgroup label="Alaskan/Hawaiian Time Zone">
+            <option value="AK">Alaska</option>
+            <option value="HI">Hawaii</option>
+        </optgroup>
+        <optgroup label="Pacific Time Zone">
+            <option value="CA">California</option>
+            <option value="NV">Nevada</option>
+            <option value="OR">Oregon</option>
+            <option value="WA">Washington</option>
+        </optgroup>
+        <optgroup label="Mountain Time Zone">
+            <option value="AZ">Arizona</option>
+            <option value="CO">Colorado</option>
+            <option value="ID">Idaho</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NM">New Mexico</option>
+            <option value="ND">North Dakota</option>
+            <option value="UT">Utah</option>
+            <option value="WY">Wyoming</option>
+        </optgroup>
+        <optgroup label="Central Time Zone">
+            <option value="AL">Alabama</option>
+            <option value="AR">Arkansas</option>
+            <option value="IL">Illinois</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="OK">Oklahoma</option>
+            <option value="SD">South Dakota</option>
+            <option value="TX">Texas</option>
+            <option value="TN">Tennessee</option>
+            <option value="WI">Wisconsin</option>
+        </optgroup>
+        <optgroup label="Eastern Time Zone">
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="IN">Indiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="OH">Ohio</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WV">West Virginia</option>
+        </optgroup>
+    </select>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12"><label>单选</label></div>
+        <!--<div class="col-md-3">
+            <select id="select1_0" class="populate"></select>
+        </div>
+        <div class="col-md-3">
+            <select id="select1_1" class="populate"></select>
+        </div>
+        <div class="col-md-3">
+            <input type="hidden" name="select1_2" id="select1_2">
+        </div>-->
+        <div class="col-md-3">
+            <input type="hidden" name="select1_3" id="select1_3" value="222">
+        </div>
+    </div>
+    <!--<div class="row">
+        <div class="col-md-12"><label>多选</label></div>
+        <div class="col-md-3">
+            <select id="select2_0" class="populate" multiple="multiple"></select>
+        </div>
+        <div class="col-md-3">
+            <select id="select2_1" class="populate select2-allow-clear" multiple="multiple"></select>
+        </div>
+        <div class="col-md-3">
+            <input type="hidden" name="select2_2" id="select2_2">
+        </div>
+    </div>-->
+</div>
+</body>
+</html>

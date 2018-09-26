@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/main.css">
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/holder.min.js"></script>
+    <script src="../../js/h.js"></script>
+    <script src="../../js/autoload.js"></script>
+    <title>Select2</title>
+    <script type="text/javascript">
+        function selectCallback($trigger, op) {
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12"><label>单选</label></div>
+        <div class="col-md-3">
+            <input type="hidden" name="select0" class="w-select" data-placeholder="单选,不清除"
+                   data-data='[{"id":1,"text":"test111"},{"id":2,"text":"test222"},{"id":3,"text":"test333"}]'
+                   data-selected='[2]'>
+        </div>
+        <div class="col-md-3">
+            <input type="hidden" name="select0" class="w-select" data-placeholder="单选,不清除"
+                   value="truckid"
+                   data-ajax-url="query.php">
+        </div>
+        <div class="col-md-3">
+            <input type="hidden" name="select0" class="w-select" data-placeholder="单选,不清除"
+                   data-callback="selectCallback"
+                   data-ajax-url="query.php">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12"><label>多选</label></div>
+        <div class="col-md-3">
+            <input type="hidden" name="select0" class="w-select" data-placeholder="多选,不清除"
+                   data-multiple="true"
+                   data-data='[{"id":1,"text":"test111"},{"id":2,"text":"test222"},{"id":3,"text":"test333"}]'
+                   data-selected='[2]'>
+        </div>
+        <div class="col-md-3">
+            <input type="hidden" name="select0" class="w-select" data-placeholder="多选,不清除"
+                   data-multiple="true"
+                   data-ajax-url="query.php">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <input type="hidden" id="truckid" name="truckid" style="width:100%" value=""/>
+</div>
+</body>
+</html>

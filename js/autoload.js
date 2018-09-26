@@ -188,6 +188,17 @@ var Loader = {
                 $triggers.checkbox();
             });
     },
+    select2: function ($triggers, callback) {
+        this.__loadPlugin('select2',
+            '/plugins/select2/select2.min.js', callback, '/plugins/select2/select2.css');
+    },
+    select: function ($triggers) {
+        this.select2($triggers, function () {
+            Loader.__loadPlugin('select', '/plugins/select/jquery.select.js', function () {
+                $triggers.select();
+            });
+        });
+    },
     template: function ($triggers) {
         this.__loadPlugin('template',
             '/plugins/template/jquery.template.js', function () {
@@ -209,6 +220,7 @@ var Loader = {
         'ajaxPage': '.w-ajax-page',
         'tab': '.w-tab',
         'checkbox': '.w-checkbox',
+        'select': '.w-select',
         'template': '.w-template'
     }
 };
