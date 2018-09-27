@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/main.css">
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/holder.min.js"></script>
+    <script src="../../js/h.js"></script>
+    <script src="../../js/autoload.js"></script>
+    <link rel="stylesheet" href="./../../js/plugins/editTable/css/main.css">
+    <title>editTable</title>
+</head>
+<body>
+<div class="container">
+    <table class="table table-bordered table-responsive table-hover w-edit-table" data-ajax-url="success.php" data-post-data="{'params':5, 'id':1}">
+        <tr>
+            <th width="150px">姓名</th>
+            <th width="150px">性别</th>
+            <th width="150px">年龄</th>
+            <th width="250px">描述</th>
+            <th width="100px">禁用</th>
+            <th width="100px">操作</th>
+            <th>操作状态</th>
+        </tr>
+        <tr data-post-data="{'id':3}" data-ajax-url="failure.php">
+            <td data-name="name" data-type="text">姓名</td>
+            <td data-name="sex" data-type="select" data-options='{0:"密", 1:"男", 2:"女"}'>女</td>
+            <td data-name="age">21</td>
+            <td data-name="description" data-type="textarea">描述</td>
+            <td data-name="forbidden" data-post-data="{name:'xx'}">
+                <input type="checkbox"/>
+            </td>
+            <td data-name="sort_order" data-type="upDown"></td>
+            <td class="w-tip"></td>
+        </tr>
+        <tr data-post-data="{'id':4}" data-ajax-url="success.php" data-tip=".w-tip">
+            <td data-name="name" data-type="text">姓名</td>
+            <td data-name="sex" data-type="select" data-options='{0:"密", 1:"男", 2:"女"}'>女</td>
+            <td data-name="age">22</td>
+            <td data-name="description" data-type="textarea">描述</td>
+            <td data-name="forbidden">
+                <input type="checkbox"/>
+            </td>
+            <td data-name="sort_order" data-type="upDown"></td>
+            <td class="w-tip"></td>
+        </tr>
+        <tr data-post-data="{'id':4}" data-ajax-url="success.php" data-tip=".w-tip">
+            <td data-name="name" data-type="text">姓名</td>
+            <td data-name="sex" data-type="select" data-options='{0:"密", 1:"男", 2:"女"}'>女</td>
+            <td data-name="age">23</td>
+            <td data-name="description" data-type="textarea">描述</td>
+            <td data-name="forbidden">
+                <input type="checkbox"/>
+            </td>
+            <td data-name="sort_order"></td>
+            <td class="w-tip"></td>
+        </tr>
+        <tr data-post-data="{'id':5}" data-ajax-url="success.php">
+            <td data-name="name" data-type="text">姓名</td>
+            <td data-name="sex" data-type="select" data-options='{0:"密", 1:"男", 2:"女"}'>女</td>
+            <td data-name="age">24</td>
+            <td data-name="description" data-type="textarea">描述</td>
+            <td data-name="forbidden">
+                <input type="checkbox"/>
+            </td>
+            <td data-name="sort_order" data-type="upDown"></td>
+            <td class="w-tip"></td>
+        </tr>
+    </table>
+</div>
+<div class="container">
+    <table class="table table-bordered table-responsive table-hover w-edit-table" data-ajax-url="success.php" data-post-data="{'params':5, 'id':1}">
+        <tr>
+            <th width="150px">姓名</th>
+            <th width="150px">性别</th>
+            <th width="150px">年龄</th>
+            <th width="250px">描述</th>
+            <th width="100px">禁用</th>
+            <th width="100px">操作</th>
+            <th>操作状态</th>
+        </tr>
+        <tr data-post-data="{'id':3}" data-ajax-url="failure.php">
+            <td data-name="name" data-type="text">姓名</td>
+            <td data-name="sex" data-type="select" data-options='{0:"密", 1:"男", 2:"女"}'>女</td>
+            <td data-name="age">26</td>
+            <td data-name="description" data-type="textarea">描述</td>
+            <td data-name="forbidden">
+                <input type="checkbox"/>
+            </td>
+            <td data-name="sort_order" data-type="upDown"></td>
+            <td class="w-tip"></td>
+        </tr>
+        <tr data-post-data="{'id':4}" data-ajax-url="success.php" data-tip=".w-tip">
+            <td data-name="name" data-type="text">姓名</td>
+            <td data-name="sex" data-type="select" data-options='{0:"密", 1:"男", 2:"女"}'>女</td>
+            <td data-name="age">27</td>
+            <td data-name="description" data-type="textarea">描述</td>
+            <td data-name="forbidden">
+                <input type="checkbox"/>
+            </td>
+            <td data-name="sort_order" data-type="upDown"></td>
+            <td class="w-tip"></td>
+        </tr>
+        <tr data-post-data="{'id':4}" data-ajax-url="success.php" data-tip=".w-tip">
+            <td data-name="name" data-type="text">姓名</td>
+            <td data-name="sex" data-type="select" data-options='{0:"密", 1:"男", 2:"女"}'>女</td>
+            <td data-name="age">28</td>
+            <td data-name="description" data-type="textarea">描述</td>
+            <td data-name="forbidden">
+                <input type="checkbox"/>
+            </td>
+            <td data-name="sort_order"></td>
+            <td class="w-tip"></td>
+        </tr>
+        <tr data-post-data="{'id':5}" data-ajax-url="success.php">
+            <td data-name="name" data-type="text">姓名</td>
+            <td data-name="sex" data-type="select" data-options='{0:"密", 1:"男", 2:"女"}'>女</td>
+            <td data-name="age">29</td>
+            <td data-name="description" data-type="textarea">描述</td>
+            <td data-name="forbidden">
+                <input type="checkbox"/>
+            </td>
+            <td data-name="sort_order" data-type="upDown"></td>
+            <td class="w-tip"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

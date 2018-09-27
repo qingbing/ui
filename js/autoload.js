@@ -80,7 +80,7 @@ var ParamsManager = function (wn) {
  * ProjectFunction
  */
 var PF = {
-    ajax: function (ajaxUrl, postData, callback, method) {
+    ajax: function (ajaxUrl, postData, callback, failure, method) {
         if (!H.isDefined(method)) {
             method = 'POST';
         }
@@ -97,7 +97,11 @@ var PF = {
             data: postData,
             success: function (rs) {
                 if (0 !== parseInt(rs.code)) {
-                    $.alert(rs.message, 'danger');
+                    if (H.isFunction(failure)) {
+                        failure(rs);
+                    } else {
+                        $.alert("" + rs.code + " : " + rs.message, 'danger');
+                    }
                 } else if (async) {
                     callback(rs.data);
                 } else {
@@ -205,6 +209,12 @@ var Loader = {
             });
         });
     },
+    editTable: function ($triggers) {
+        this.__loadPlugin('editTable',
+            '/plugins/editTable/jquery.editTable.js', function () {
+                $triggers.editTable();
+            });
+    },
     template: function ($triggers) {
         this.__loadPlugin('template',
             '/plugins/template/jquery.template.js', function () {
@@ -228,6 +238,7 @@ var Loader = {
         'checkbox': '.w-checkbox',
         'datetime': '.w-datetime',
         'select': '.w-select',
+        'editTable': '.w-edit-table',
         'template': '.w-template'
     }
 };
