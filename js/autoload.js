@@ -215,6 +215,12 @@ var Loader = {
                 $triggers.editTable();
             });
     },
+    player: function ($triggers) {
+        this.__loadPlugin('player',
+            '/plugins/player/jquery.player.js', function () {
+                $triggers.player();
+            });
+    },
     template: function ($triggers) {
         this.__loadPlugin('template',
             '/plugins/template/jquery.template.js', function () {
@@ -239,6 +245,7 @@ var Loader = {
         'datetime': '.w-datetime',
         'select': '.w-select',
         'editTable': '.w-edit-table',
+        'player': '.w-player',
         'template': '.w-template'
     }
 };
