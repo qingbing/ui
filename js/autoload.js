@@ -188,6 +188,12 @@ var Loader = {
                 $triggers.checkbox();
             });
     },
+    datetime: function ($triggers) {
+        this.__loadPlugin('datetime',
+            '/plugins/datetime/jquery.datetime.js', function () {
+                $triggers.datetime();
+            });
+    },
     select2: function ($triggers, callback) {
         this.__loadPlugin('select2',
             '/plugins/select2/select2.min.js', callback, '/plugins/select2/select2.css');
@@ -220,6 +226,7 @@ var Loader = {
         'ajaxPage': '.w-ajax-page',
         'tab': '.w-tab',
         'checkbox': '.w-checkbox',
+        'datetime': '.w-datetime',
         'select': '.w-select',
         'template': '.w-template'
     }
