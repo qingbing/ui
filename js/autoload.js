@@ -227,6 +227,12 @@ var Loader = {
                 $triggers.modal();
             });
     },
+    menu: function ($triggers) {
+        this.__loadPlugin('menu',
+            '/plugins/menu/jquery.menu.js', function () {
+                $triggers.menu();
+            });
+    },
     template: function ($triggers) {
         this.__loadPlugin('template',
             '/plugins/template/jquery.template.js', function () {
@@ -253,6 +259,7 @@ var Loader = {
         'editTable': '.w-edit-table',
         'player': '.w-player',
         'modal': '.w-modal',
+        'menu': '.w-menu',
         'template': '.w-template'
     }
 };
