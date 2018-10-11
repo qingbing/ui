@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/main.css">
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/holder.min.js"></script>
+    <script src="../../js/h.js"></script>
+    <script src="../../js/autoload.js"></script>
+    <title>date range picker</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">RangeDate</div>
+        <div class="col-md-8">
+            <input type="text" name="rangeDate" id="rangeDate" class="form-control" readonly>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">RangeDate</div>
+        <div class="col-md-8">
+            <div class="input-group" id="rangeDate_box">
+                <span class="input-group-addon fa fa-calendar"></span>
+                <input type="text" name="rangeDate" id="rangeDate1" class="form-control" readonly>
+                <span class="input-group-addon fa fa-close w-dateRange-clean"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        Loader.loadDateRangePicker(function () {
+            var config = {
+                "singleDatePicker": false, // 是否单日历 true | false(default)
+                "showDropdowns": true, // 年月是否用下拉方式展示 true | false(default)
+                "showWeekNumbers": true, // 是否显示年中周的表示
+                // "showISOWeekNumbers": true, // 没看出效果在哪里
+                "timePicker": true, // 是否显示时间 true | false(default)
+                "timePicker24Hour": true, // 是否24小时显示 true | false(default)
+                "timePickerSeconds": true, // 是否显示秒 true | false(default)
+                // "timePickerIncrement": 5, // minute 分的显示间隔，默认为1
+                // "linkedCalendars": false, // 双日历时，两个日历是否同时前进或后退 true(default) | false
+                "autoApply": false, // 双日历时, 是否显示“apply”和“canel”按钮，并在单击两个日期后自动应用新的日期范围 true(default) | false
+                "dateLimit": {
+                    "days": 30
+                },
+                "ranges": {
+                    "今天": [moment().startOf('day'), moment().endOf('day')],
+                    "昨天": [moment().subtract(1, 'days').startOf('day'), moment().subtract(1, 'days').endOf('day')],
+                    "最近7天": [moment().subtract(6, 'days').startOf('day'), moment()],
+                    "最近30天": [moment().subtract(29, 'days').startOf('day'), moment()],
+                    "本月": [moment().startOf('month'), moment().endOf('month')],
+                    "上月": [moment().subtract(1, 'months').startOf('month'), moment().subtract(1, 'months').endOf('month')]
+                },
+                "locale": {
+                    // "direction": "ltr", // ranges显示方向，ltr(default) | rtl
+                    "format": "YYYY-MM-DD HH:mm:ss", // 时间显示格式化
+                    "separator": " - ", // 时间显示分割
+                    "applyLabel": "确定", // apply标签
+                    "cancelLabel": "取消", // cancel表现
+                    "fromLabel": "From",
+                    "toLabel": "To",
+                    "customRangeLabel": "自定义", // 自定义时间标签
+                    "daysOfWeek": ["日", "一", "二", "三", "四", "五", "六"], // 显示星期标签
+                    "monthNames": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"], // 显示月份标签
+                    "firstDay": 0 // 显示在第一列的星期索引
+                },
+                "alwaysShowCalendars": true, // 当开启ranges，选择非自定义时，日历是否一直显示 false(default) | true
+                // "startDate": "10/05/2018", // 开始日期
+                // "endDate": "10/11/2018", // 结束日期
+                // minDate: moment().subtract(9, 'days'), // 最小日期
+                // maxDate: moment().subtract(1, 'days'), // 最大日期
+                "cancelClass": "btn-warning", // cancel 按钮class
+                "applyClass": "btn-warning" // apply 按钮class
+            };
+            $('#rangeDate').daterangepicker(config, function (start, end, label) {
+                console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+            });
+            $('#rangeDate_box').daterangepicker(config, function (start, end, label) {
+                $('#rangeDate1').val(start.format(config.locale.format) + ' - ' + end.format(config.locale.format));
+            });
+            $('.w-dateRange-clean').on('click', function (e) {
+                $('#rangeDate1').val("");
+                H.stopPropagation(e);
+            });
+        });
+    });
+</script>
+</body>
+</html>

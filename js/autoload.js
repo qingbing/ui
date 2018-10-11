@@ -233,19 +233,22 @@ var Loader = {
                 $triggers.menu();
             });
     },
-    template: function ($triggers) {
-        this.__loadPlugin('template',
-            '/plugins/template/jquery.template.js', function () {
-                $triggers.template();
-            });
-    },
     loadMoment: function (callback) {
-        if (this.__isLoadedMoment) {
-            return H.isFunction(callback) && callback();
-        }
-        this.loadJs('/plugins/moment.min.js', function () {
-            Loader.__isLoadedMoment = true;
-            H.isFunction(callback) && callback();
+        this.__loadPlugin('moment',
+            '/plugins/moment.min.js', callback);
+    },
+    loadDateRangePicker: function (callback) {
+        this.loadMoment(function () {
+            Loader.__loadPlugin('daterangepicker',
+                '/plugins/daterangepicker/daterangepicker.js', callback, '/plugins/daterangepicker/daterangepicker.css');
+        });
+    },
+    dateRange: function ($triggers) {
+        this.loadDateRangePicker(function () {
+            Loader.__loadPlugin('dateRange',
+                '/plugins/dateRange/jquery.dateRange.js', function () {
+                    $triggers.dateRange();
+                });
         });
     },
     configs: {
@@ -260,6 +263,7 @@ var Loader = {
         'player': '.w-player',
         'modal': '.w-modal',
         'menu': '.w-menu',
+        'dateRange': '.w-dateRange',
         'template': '.w-template'
     }
 };
