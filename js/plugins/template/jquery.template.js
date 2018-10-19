@@ -1,13 +1,13 @@
 (function ($) {
-    var PM = new ParamsManager('template');
-    var L = {
+    let PM = new ParamsManager('template');
+    let L = {
         config: {
             ops: {
                 targetClose: true
             }
         },
         initOp: function ($trigger, op) {
-            var tp = PM.getOption($trigger);
+            let tp = PM.getOption($trigger);
             if (H.isDefined(tp)) {
                 return tp;
             }
@@ -39,7 +39,7 @@
      * 文档点击事件
      */
     $(document).on('click', function (e) {
-        var op = PM.getOption();
+        let op = PM.getOption();
         // todo coding
         console.log('template document click');
     });
@@ -50,9 +50,9 @@
         template: function (ops) {
             ops = $.extend(true, {}, L.config.ops, ops);
             $(this).each(function () {
-                var $this = $(this);
+                let $this = $(this);
                 // 扩展参数设置
-                var data = $this.data();
+                let data = $this.data();
                 L.run($this, L.initOp($this, $.extend(true, {}, ops, data)));
             });
             return this;

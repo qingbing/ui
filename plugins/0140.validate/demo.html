@@ -11,43 +11,51 @@
     <script src="../../js/h.js"></script>
     <script src="../../js/autoload.js"></script>
     <link rel="stylesheet" href="./../../js/plugins/validate/css/main.css">
-    <title>Validate</title>
+    <title>Demo</title>
 </head>
 <body>
-<div class="container">
 
+<div class="container">
     <h3 class="page-title">validate css demo</h3>
-    <form action="#" class="form-horizontal w-validate">
+    <form action="#" class="form-horizontal">
         <dl class="form-group row">
             <dt class="control-label col-md-3"><label>Username:</label></dt>
-            <dd class="form-control-static">消息</dd>
+            <dd class="form-control-static">xxxx</dd>
         </dl>
-        <dl class="form-group row">
-            <dt class="control-label col-md-3"><label>required:</label></dt>
+        <dl class="form-group row has-feedback">
+            <dt class="control-label col-md-3"><label>normal:</label></dt>
             <dd class="col-md-6">
-                <input type="text" class="form-control" data-valid-type="">
+                <input type="text" class="form-control">
+                <div class="help-block">this is normal.</div>
             </dd>
         </dl>
-        <dl class="form-group row">
+        <dl class="form-group row has-feedback has-warning">
             <dt class="control-label col-md-3"><label>warning:</label></dt>
             <dd class="col-md-6">
                 <input type="text" class="form-control">
+                <i class="form-control-feedback fa fa-warning"></i>
+                <div class="help-block">this is focus.</div>
             </dd>
         </dl>
-        <dl class="form-group row">
+        <dl class="form-group row has-feedback has-error">
             <dt class="control-label col-md-3"><label>error:</label></dt>
             <dd class="col-md-6">
                 <input type="text" class="form-control">
+                <i class="form-control-feedback fa fa-close"></i>
+                <div class="help-block">this is error.</div>
             </dd>
         </dl>
-        <dl class="form-group row">
+        <dl class="form-group row has-feedback has-success">
             <dt class="control-label col-md-3"><label>success:</label></dt>
             <dd class="col-md-6">
                 <input type="text" class="form-control">
+                <i class="form-control-feedback fa fa-check"></i>
+                <div class="help-block">this is error.</div>
             </dd>
         </dl>
 
-        <dl class="form-group row">
+
+        <dl class="form-group row has-feedback has-success">
             <dt class="control-label col-md-3"><label>城市:</label></dt>
             <dd class="col-md-6">
                 <select name="city" id="city" class="form-control">
@@ -55,25 +63,33 @@
                     <option value="上海">上海</option>
                     <option value="天津">天津</option>
                 </select>
+                <i class="form-control-feedback fa fa-check"></i>
+                <div class="help-block">this is error.</div>
             </dd>
         </dl>
 
-        <dl class="form-group row">
+
+        <dl class="form-group row has-feedback has-success">
             <dt class="control-label col-md-3"><label>文件选择:</label></dt>
             <dd class="col-md-6">
-                <input type="file" class="form-control"/>
+                <input type="file" class="form-control" />
+                <i class="form-control-feedback fa fa-check"></i>
+                <div class="help-block">this is error.</div>
             </dd>
         </dl>
 
-        <dl class="form-group row">
+
+        <dl class="form-group row has-feedback has-success">
             <dt class="control-label col-md-3"><label>留言:</label></dt>
             <dd class="col-md-6">
-                <textarea name="mark" id="mark" cols="30" rows="10" placeholder="message"
-                          class="form-control"></textarea>
+                <textarea name="mark" id="mark" cols="30" rows="10" placeholder="message" class="form-control"></textarea>
+                <i class="form-control-feedback fa fa-check"></i>
+                <div class="help-block">this is error.</div>
             </dd>
         </dl>
 
-        <dl class="form-group row">
+
+        <dl class="form-group row has-feedback has-success">
             <dt class="control-label col-md-3"><label>爱好</label></dt>
             <dd class="col-md-6">
                 <div class="checkbox-inline">
@@ -85,10 +101,13 @@
                 <div class="checkbox-inline">
                     <label><input type="checkbox" name="1"> 篮球</label>
                 </div>
+                <i class="form-control-feedback fa fa-check"></i>
+                <div class="help-block">this is error.</div>
             </dd>
         </dl>
 
-        <dl class="form-group row">
+
+        <dl class="form-group row has-feedback has-success">
             <dt class="control-label col-md-3"><label>爱好</label></dt>
             <dd class="col-md-6">
                 <div class="checkbox">
@@ -100,10 +119,13 @@
                 <div class="checkbox">
                     <label><input type="checkbox" name="1"> 篮球</label>
                 </div>
+                <i class="form-control-feedback fa fa-check"></i>
+                <div class="help-block">this is error.</div>
             </dd>
         </dl>
 
-        <dl class="form-group row">
+
+        <dl class="form-group row has-feedback has-success">
             <dt class="control-label col-md-3"><label>单选</label></dt>
             <dd class="col-md-6">
                 <div class="radio-inline">
@@ -115,10 +137,13 @@
                 <div class="radio-inline">
                     <label><input type="radio" name="1"> 篮球</label>
                 </div>
+                <i class="form-control-feedback fa fa-check"></i>
+                <div class="help-block">this is error.</div>
             </dd>
         </dl>
 
-        <dl class="form-group row">
+
+        <dl class="form-group row has-feedback has-success">
             <dt class="control-label col-md-3"><label>单选</label></dt>
             <dd class="col-md-6">
                 <div class="radio">
@@ -130,6 +155,8 @@
                 <div class="radio">
                     <label><input type="radio" name="1"> 篮球</label>
                 </div>
+                <i class="form-control-feedback fa fa-check"></i>
+                <div class="help-block">this is error.</div>
             </dd>
         </dl>
 
@@ -140,7 +167,7 @@
             </dd>
         </dl>
     </form>
-
 </div>
+
 </body>
 </html>
