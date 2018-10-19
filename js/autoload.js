@@ -251,6 +251,12 @@ var Loader = {
                 });
         });
     },
+    validate: function ($triggers) {
+        this.__loadPlugin('validate',
+            '/plugins/validate/jquery.validate.js', function () {
+                $triggers.validate();
+            });
+    },
     configs: {
         'dropdown': '.w-dropdown',
         'navbar': '.w-navbar',
@@ -264,6 +270,7 @@ var Loader = {
         'modal': '.w-modal',
         'menu': '.w-menu',
         'dateRange': '.w-dateRange',
+        'validate': '.w-validate',
         'template': '.w-template'
     }
 };
