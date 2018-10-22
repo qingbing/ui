@@ -7,7 +7,7 @@ if (typeof md5 === 'undefined'){
  */
 (function () {
     // 变量类型判断
-    var VType = {
+    let VType = {
         type: function (v) {
             return typeof v;
         },
@@ -65,26 +65,26 @@ if (typeof md5 === 'undefined'){
         }
     };
 
-    var Str = {
+    let Str = {
         trim: function (v) {
             return v.trim(v);
         }
     };
 
-    var Cookie = {
+    let Cookie = {
         set: function (name, val, expire) {
-            var vs = name + '=' + Url.encode(Unit.toString(val)) + ';';
+            let vs = name + '=' + Url.encode(Unit.toString(val)) + ';';
             if (expire) {
-                var d = new Date();
+                let d = new Date();
                 d.setTime(d.getTime() + expire * 1000);
                 vs += 'expires=' + d.toUTCString() + ';';
             }
             document.cookie = vs + 'path=/;';
         }, get: function (name) {
-            var sc = document.cookie;
-            var ac = sc.split('; ');
-            for (var i in ac) {
-                var a = ac[i].split('=');
+            let sc = document.cookie;
+            let ac = sc.split('; ');
+            for (let i in ac) {
+                let a = ac[i].split('=');
                 if (!a[1]) {
                     return '';
                 }
@@ -94,21 +94,21 @@ if (typeof md5 === 'undefined'){
             }
             return '';
         }, del: function (name) {
-            var _c = Cookie.get(name);
+            let _c = Cookie.get(name);
             if (_c != null) {
                 document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;";
             }
         }, flush: function () {
-            var sc = document.cookie;
-            var ac = sc.split('; ');
-            for (var i in ac) {
-                var a = ac[i].split('=');
+            let sc = document.cookie;
+            let ac = sc.split('; ');
+            for (let i in ac) {
+                let a = ac[i].split('=');
                 Cookie.del(a[0]);
             }
         }
     };
 
-    var Unit = {
+    let Unit = {
         rand: function () {
             return Math.ceil(Math.pow(10, 16) * Math.random());
         },
@@ -122,17 +122,17 @@ if (typeof md5 === 'undefined'){
             return min + Math.round((max - min) * Math.random());
         },
         ksort: function (v) {
-            var keys = Object.keys(v).sort();
-            var R = {};
-            for (var i = 0; i < keys.length; i++) {
+            let keys = Object.keys(v).sort();
+            let R = {};
+            for (let i = 0; i < keys.length; i++) {
                 R[keys[i]] = v[keys[i]];
             }
             return R;
         },
         each: function (arr, fn) {
             if (VType.isObject(arr)) {
-                for (var i in arr) {
-                    var r = fn(i, arr[i]);
+                for (let i in arr) {
+                    let r = fn(i, arr[i]);
                     if (false === r) {
                         return false;
                     }
@@ -170,14 +170,14 @@ if (typeof md5 === 'undefined'){
                     });
                     return '"' + v + '"';
                 case 'object':
-                    var r, ta = [];
+                    let r, ta = [];
                     if (VType.isArray(v)) {
-                        for (var k in v) {
+                        for (let k in v) {
                             ta.push(Unit.toString(v[k]));
                         }
                         r = '[' + ta.join(',') + ']';
                     } else {
-                        for (var k in v) {
+                        for (let k in v) {
                             ta.push(Unit.toString(k) + ':' + Unit.toString(v[k]));
                         }
                         r = '{' + ta.join(',') + '}';
@@ -189,7 +189,7 @@ if (typeof md5 === 'undefined'){
         }
     };
 
-    var Url = {
+    let Url = {
         encode: function (v) {
             return encodeURIComponent(v);
         },
@@ -199,12 +199,12 @@ if (typeof md5 === 'undefined'){
         buildQuery: function () {
             function c(j, s, a) {
                 if (!VType.isObject(j)) return a ? (a + '[' + j + ']') : j;
-                var o = [];
-                for (var k in j) {
-                    var tk = s ? Url.encode(k) : k;
+                let o = [];
+                for (let k in j) {
+                    let tk = s ? Url.encode(k) : k;
                     tk = a ? (a + '[' + tk + ']') : tk;
                     if (!VType.isObject(j[k])) {
-                        var tv = s ? Url.encode(j[k]) : j[k];
+                        let tv = s ? Url.encode(j[k]) : j[k];
                         o.push(tk + '=' + tv);
                     } else {
                         o.push(c(j[k], s, tk));
@@ -214,7 +214,7 @@ if (typeof md5 === 'undefined'){
             }
 
             // Create query string.
-            var len = arguments.length, i = 0, s, o = [];
+            let len = arguments.length, i = 0, s, o = [];
             if (len < 1) return '';
             if (1 === len) {
                 s = false;
@@ -235,9 +235,9 @@ if (typeof md5 === 'undefined'){
             if (!url) {
                 url = Win.cUrl();
             }
-            var args = Array.prototype.slice.call(arguments, 0);
+            let args = Array.prototype.slice.call(arguments, 0);
             args.shift();
-            var query = Url.buildQuery.apply(this, args);
+            let query = Url.buildQuery.apply(this, args);
             if (query) {
                 if (-1 === url.indexOf('?')) {
                     url += '?';
@@ -250,7 +250,7 @@ if (typeof md5 === 'undefined'){
         }
     };
 
-    var Win = {
+    let Win = {
         cUrl: function () {
             if (VType.isDefined(Win.__cUrl)) {
                 return Win.__cUrl;
@@ -266,9 +266,9 @@ if (typeof md5 === 'undefined'){
         },
         jsPath: function () {
             if (!VType.isDefined(this.__jsPath)) {
-                var ds = document.getElementsByTagName('script');
-                var src, iof;
-                for (var i = 0; i < ds.length; i++) {
+                let ds = document.getElementsByTagName('script');
+                let src, iof;
+                for (let i = 0; i < ds.length; i++) {
                     src = ds[i].src;
                     if (!src || -1 === (iof = src.indexOf('/h.js'))) {
                         continue;
@@ -280,14 +280,14 @@ if (typeof md5 === 'undefined'){
         },
         cssPath: function () {
             if (!VType.isDefined(this.__cssPath)) {
-                var sp = this.jsPath();
+                let sp = this.jsPath();
                 this.__cssPath = sp.substring(0, sp.lastIndexOf('/')) + "/css";
             }
             return this.__cssPath;
         }
     };
 
-    var Doc = {
+    let Doc = {
         head: function () {
             if (VType.isDefined(Doc.__head)) {
                 return Doc.__head;
@@ -299,7 +299,7 @@ if (typeof md5 === 'undefined'){
                 return;
             }
 
-            var hc = document.createElement('link');
+            let hc = document.createElement('link');
             if (VType.isString(id)) {
                 hs.setAttribute('id', id);
             }
@@ -316,7 +316,7 @@ if (typeof md5 === 'undefined'){
                 return;
             }
 
-            var hs = document.createElement('script');
+            let hs = document.createElement('script');
             if (VType.isString(id)) {
                 hs.setAttribute('id', id);
             }
@@ -345,19 +345,19 @@ if (typeof md5 === 'undefined'){
             if (!VType.isString(url)) {
                 return;
             }
-            var rs = Unit.rand(), remote_fn = 'H_Json_' + rs;
+            let rs = Unit.rand(), remote_fn = 'H_Json_' + rs;
             window[remote_fn] = function (remoteData) {
-                var hs = document.getElementById(remote_fn);
+                let hs = document.getElementById(remote_fn);
                 Doc.head().removeChild(hs);
                 window[remote_fn] = undefined;
                 if (VType.isFunction(callback)) callback(remoteData);
             };
-            var _url = Url.createUrl(url, {H_CALLBACK: remote_fn}, params, {'__': rs});
+            let _url = Url.createUrl(url, {H_CALLBACK: remote_fn}, params, {'__': rs});
             Doc.loadJs(_url, '', remote_fn);
         }
     };
 
-    var Event = {
+    let Event = {
         preventDefault: function (e) {
             e.preventDefault && e.preventDefault();
         },
@@ -380,10 +380,10 @@ if (typeof md5 === 'undefined'){
         isArray: VType.isArray,
         isEmpty: VType.isEmpty,
 
-        setCookie : Cookie.set,
-        getCookie : Cookie.get,
-        delCookie : Cookie.del,
-        flushCookie : Cookie.flush,
+        setCookie: Cookie.set,
+        getCookie: Cookie.get,
+        delCookie: Cookie.del,
+        flushCookie: Cookie.flush,
 
         rand: Unit.rand,
         random: Unit.random,

@@ -17,15 +17,21 @@
 <div class="container">
 
     <h3 class="page-title">validate css demo</h3>
-    <form action="#" class="form-horizontal w-validate">
+    <form action="#" class="form-horizontal w-validate" data-ad-client="a">
         <dl class="form-group row">
             <dt class="control-label col-md-3"><label>Username:</label></dt>
-            <dd class="form-control-static">消息</dd>
+            <dd class="form-control-static">静态显示消息</dd>
         </dl>
         <dl class="form-group row">
             <dt class="control-label col-md-3"><label>required:</label></dt>
             <dd class="col-md-6">
-                <input type="text" class="form-control" data-valid="{required:true}" data-message="{required:'必须填写'}">
+                <input type="text" class="form-control" data-valid-type="{required:true}" data-valid-message="{required:'必须填写'}">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>required:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control" data-valid-type="{required:true}" data-valid-message="{required:'必须填写'}">
             </dd>
         </dl>
         <dl class="form-group row">
