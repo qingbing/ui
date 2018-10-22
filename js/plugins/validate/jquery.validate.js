@@ -1,10 +1,21 @@
-
-
 (function ($) {
+    $.fn.validator = {
+        messages: {
+            "required": " * 必填 * "
+        },
+        rules: {}
+    };
+    $.fn.validator.rules.required = function (val, op) {
+        if (H.isEmpty(val)) {
+            return op.messages.required;
+        }
+        return true;
+    };
+
     let PM = new ParamsManager('validate');
     let L = {
         config: {
-            valid : {
+            valid: {
                 base64: {
                     'default': '请输入有效的Base64编码'
                 },
@@ -294,15 +305,6 @@
                     version: '请输入版本 %s 的UUID'
                 }
             },
-            message :{},
-            validType:{
-                required : {
-                    message : ' * 必填 * ',
-                    check : function (val, ops) {
-
-                    }
-                }
-            },
             ops: {
                 targetClose: true
             }
@@ -343,8 +345,6 @@
         validate: function (ops) {
             ops = $.extend(true, {}, L.config.ops, ops);
 
-            $.fn.validate.validator.color(11, 22);
-
             $(this).each(function () {
                 let $this = $(this);
                 // 扩展参数设置
@@ -354,19 +354,4 @@
             return this;
         }
     });
-
-
-    $.fn.validate.validator = {};
-
-})(jQuery);
-
-
-(function ($) {
-    $.fn.validate.validator.color = function (val, op) {
-        console.log($.fn.validate.validator.color.message);
-        console.log(op);
-    };
-    $.fn.validate.validator.color.message = {
-        message : 'error'
-    };
 })(jQuery);
