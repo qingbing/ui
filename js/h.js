@@ -68,6 +68,15 @@ if (typeof md5 === 'undefined'){
     let Str = {
         trim: function (v) {
             return v.trim(v);
+        },
+        replace: function (msg, ps) {
+            if (!VType.isArray(ps)) {
+                ps = [ps];
+            }
+            for (let i in ps) {
+                msg = msg.replace('%s', ps[i]);
+            }
+            return msg;
         }
     };
 
@@ -394,6 +403,7 @@ if (typeof md5 === 'undefined'){
         toString: Unit.toString,
 
         trim: Str.trim,
+        replace: Str.replace,
 
         buildQuery: Url.buildQuery,
         createUrl: Url.createUrl,
