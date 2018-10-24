@@ -1,5 +1,10 @@
 (function ($) {
     $.fn.validator = {
+        helper: {
+            pattern: function (val, pattern) {
+                return pattern.test(val);
+            }
+        },
         config: {
             choice: {
                 max: false,
@@ -8,12 +13,26 @@
             checked: {
                 allowEmpty: false
             },
+            file: {
+                allowEmpty: true,
+                exts: false
+            },
+            required: {},
+            preg : {
+                allowEmpty: true,
+                pattern: ''
+            },
+            password: {
+                allowEmpty: false,
+                pattern: '/^.{6,18}$/'
+            },
             compare: {
-                compareTarget: "#xxx"
+                compareTarget: undefined
             }
         },
         messages: {
             choice: {
+                placeholder: "请选择选项",
                 message: " * 请选择 * ",
                 length: '请选中 %s 个选项',
                 less: '请至少选中 %s 个选项',
@@ -21,13 +40,29 @@
                 between: '请选择 %s 至 %s 个选项'
             },
             checked: {
+                placeholder: "请勾选",
                 message: "请勾选"
             },
+            file: {
+                placeholder: "请选择有效的文件",
+                message: "请选择有效的文件",
+                extMessage: "仅支持 %s 类型的文件",
+            },
             required: {
+                placeholder: "必填",
                 message: " * 必填 * "
             },
+            preg : {
+                placeholder: "请输入",
+                message: "输入不合法"
+            },
+            password: {
+                placeholder: "请输入密码",
+                message: "密码输入格式不正确"
+            },
             compare: {
-                message: ""
+                placeholder: "请输入确认信息",
+                message: "信息确认不一致"
             }
         },
         rules: {}
@@ -74,7 +109,47 @@
         }
         return true;
     };
-    // 必填项规则, 可以用于 select, input:file
+    // 仅适用于 input:file
+    $.fn.validator.rules.file = function ($field, op, init) {
+        if (true === init) {
+            if (H.isArray(op.exts)) {
+                op.extMessage = H.replace(op.extMessage, op.exts.join(','))
+            }
+            return op;
+        }
+        let val = $field.val();
+        if (!op.allowEmpty && H.isEmpty(val)) {
+            return op.message;
+        }
+        if (!H.isEmpty(op.exts) && !H.isEmpty(val)) {
+            if (-1 === $.inArray(val.substring(val.lastIndexOf('.') + 1), op.exts)) {
+                return op.extMessage;
+            }
+        }
+        return true;
+    };
+    // 自定义正则验证
+    $.fn.validator.rules.preg = function ($field, op, init) {
+        if (true === init) {
+            op.pattern = H.toJson(op.pattern);
+            if (!H.isObject(op.pattern)) {
+                $.alert("不是合法的正则表达式", 'warning');
+                return false;
+            }
+            return op;
+        }
+        let val = $field.val();
+        if (!op.allowEmpty && H.isEmpty(val)) {
+            return op.message;
+        }
+        if (!H.isEmpty(op.exts) && !H.isEmpty(val)) {
+            if (-1 === $.inArray(val.substring(val.lastIndexOf('.') + 1), op.exts)) {
+                return op.extMessage;
+            }
+        }
+        return true;
+    };
+    // 必填项规则, 可以用于 select
     $.fn.validator.rules.required = function ($field, op, init) {
         if (true === init) {
             return op;
@@ -85,12 +160,40 @@
         }
         return op.message;
     };
-    $.fn.validator.rules.compare = function ($field, op, init) {
+    // 密码验证规则
+    $.fn.validator.rules.password = function ($field, op, init) {
         if (true === init) {
-            // todo  doing
+            op.pattern = H.toJson(op.pattern);
+            if (!H.isObject(op.pattern)) {
+                $.alert("不是合法的正则表达式", 'warning');
+                return false;
+            }
             return op;
         }
-
+        if (op === false) {
+            return "代码参数有误";
+        }
+        if (!op.allowEmpty && !$.fn.validator.helper.pattern($field.val(), op.pattern)) {
+            return op.message;
+        }
+        return true;
+    };
+    // 同另一个元素比较
+    $.fn.validator.rules.compare = function ($field, op, init) {
+        if (true === init) {
+            op.$compareTarget = $(op.compareTarget);
+            if (op.$compareTarget.length !== 1) {
+                $.alert("必须设置一个对比的元素", 'warning');
+                return false;
+            }
+            return op;
+        }
+        if (op === false) {
+            return "代码参数有误";
+        }
+        if ($field.val() !== op.$compareTarget.val()) {
+            return op.message;
+        }
         return true;
     };
 
@@ -120,12 +223,12 @@
                 let validType = H.toJson($field.data('valid'));
                 let fieldOps = {
                     validType: {},
-                    tipMsg: undefined,
+                    placeholder: undefined,
                     $group: $field.closest('.form-group').addClass('has-feedback')
                 };
                 H.each(validType, function (type, param) {
-                    if ('tipMsg' === type) {
-                        fieldOps.tipMsg = param;
+                    if ('placeholder' === type) {
+                        fieldOps.placeholder = param;
                         return true;
                     }
                     if (!$.fn.validator.rules[type]) {
@@ -133,8 +236,8 @@
                         return true;
                     }
                     fieldOps.validType[type] = $.fn.validator.rules[type](undefined, $.extend(true, {}, $.fn.validator.config[type], $.fn.validator.messages[type], param), true);
-                    if (!fieldOps.tipMsg && fieldOps.validType[type].message) {
-                        fieldOps.tipMsg = fieldOps.validType[type].message;
+                    if (!fieldOps.placeholder && fieldOps.validType[type].placeholder) {
+                        fieldOps.placeholder = fieldOps.validType[type].placeholder;
                     }
                 });
                 // 处理默认显示
@@ -159,7 +262,7 @@
                         }
                         $help = $field.children('.help-block');
                         if ($help.length < 1) {
-                            $help = $('<div class="help-block">' + fieldOps.tipMsg + '</div>').appendTo($box);
+                            $help = $('<div class="help-block">' + fieldOps.placeholder + '</div>').appendTo($box);
                         }
                         // 因为 input-radio 和 input-checkbox 是组的概念，将同组都设置为触发器
                         $field = $box.find('[name="' + $field.attr('name') + '"]');
@@ -173,9 +276,9 @@
                     }
                     $help = $field.siblings('.help-block');
                     if ($help.length < 1) {
-                        $help = $('<div class="help-block">' + fieldOps.tipMsg + '</div>').insertAfter($feedback);
+                        $help = $('<div class="help-block">' + fieldOps.placeholder + '</div>').insertAfter($feedback);
                     }
-                    $field.attr('placeholder', fieldOps.tipMsg);
+                    $field.attr('placeholder', fieldOps.placeholder);
                 }
 
                 if ('checkbox' === inputType || 'radio' === inputType) {
@@ -240,7 +343,7 @@
                 if (true === reset) {
                     fop.$help.hide();
                 } else {
-                    fop.$help.html(fop.tipMsg).show();
+                    fop.$help.html(fop.placeholder).show();
                 }
             },
             showError: function ($field, msg) {

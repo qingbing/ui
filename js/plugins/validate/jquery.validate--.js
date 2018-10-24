@@ -1,7 +1,6 @@
 (function ($) {
     var L = {
         options: {
-            required: {direction: 'r', tipMsg: '* 必填 *', emptyMsg: '* 必填 *'},
             email: {direction: 'r', tipMsg: '输入邮箱地址', emptyMsg: '* 必填 *', errorMsg: '邮箱地址不合法', pattern: /\w+([-+.\']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/},
             url: {direction: 'r', tipMsg: '输入URL地址', emptyMsg: '* 必填 *', errorMsg: 'URL地址不合法', pattern: /^https?:\/\/[\w-]+(\.[\w-]+)+/i},
             ip: {direction: 'r', tipMsg: '输入IP地址.', emptyMsg: '* 必填 *', errorMsg: 'IP地址不合法', pattern: /^(1\d{2}|2[0-4]\d|25[0-4]|[1-9]\d?)(\.(1\d{2}|2[0-4]\d|25[0-4]|[1-9]?\d)){3}$/},// (1~255).(0~255).(0~255).(0~255)
@@ -12,19 +11,12 @@
             zip: {direction: 'r', tipMsg: '输入邮政编码', emptyMsg: '* 必填 *', errorMsg: '邮政编码不合法', pattern: /^\d{6}$/},
             time: {direction: 'r', tipMsg: '输入时间(2000-01-01 01:01:01)', emptyMsg: '* 必填 *', errorMsg: '时间不合法(2000-01-01 01:01:01)', pattern: /^(\d{2})?\d{2}-[0|1]?\d-[0-3]?\d [0-2]?\d:[0-5]?\d:[0-5]?\d$/},
             date: {direction: 'r', tipMsg: '输入日期(2000-01-01)', emptyMsg: '* 必填 *', errorMsg: '日期不合法(2000-01-01).', pattern: /^(\d{2})?\d{2}-[0|1]?\d-[0-3]?\d$/},
-            password: {direction: 'r', tipMsg: '输入6-18个字符的密码', emptyMsg: '* 必填 *', errorMsg: '密码不合法', pattern: /^.{6,18}$/},
-            compare: {direction: 'r', tipMsg: '输入确认信息', emptyMsg: '* 必填 *', errorMsg: '确认信息不一致', compare: ''},
             string: {direction: 'r', tipMsg: '输入信息', emptyMsg: '* 必填 *', errorMsg: '输入信息不正确', pattern: /^(.|\s)+$/, minLength: false, minErrorMsg: '', maxLength: false, maxErrorMsg: ''},
             username: {direction: 'r', tipMsg: '输入用户名', emptyMsg: '* 必填 *', errorMsg: '用户名不合法', pattern: /^[\u4e00-\u9fa5a-zA-Z0-9_\.]{2,18}$/, minLength: 2, minErrorMsg: '', maxLength: 18, maxErrorMsg: ''},
             numeric: {direction: 'r', tipMsg: '输入一个数字', emptyMsg: '* 必填 *', errorMsg: '输入不合法', pattern: /^-?(0|([1-9]\d*))(\.\d{1,})?$/, minNum: false, minErrorMsg: '', maxNum: false, maxErrorMsg: ''},
             integer: {direction: 'r', tipMsg: '输入一个整数', emptyMsg: '* 必填 *', errorMsg: '输入不合法', pattern: /^-?(0|([1-9]\d*))$/, minNum: false, minErrorMsg: '', maxNum: false, maxErrorMsg: ''},
             money: {direction: 'r', tipMsg: '输入金额', emptyMsg: '* 必填 *', errorMsg: '输入金额不合法', pattern: /^(0|([1-9]\d*))(\.\d{1,2})?$/, minNum: false, minErrorMsg: '', maxNum: false, maxErrorMsg: ''},
             preg: {direction: 'r', tipMsg: '输入信息', emptyMsg: '* 必填 *', errorMsg: '输入信息不合法', pattern: ''},
-            file: {direction: 'u', tipMsg: '', emptyMsg: '* 必填 *'},
-            select: {direction: 'u', tipMsg: '', emptyMsg: '* 必填 *', minLength: false, minErrorMsg: '', maxLength: false, maxErrorMsg: ''},
-            radioList: {direction: 'u', name: '', tipMsg: '', emptyMsg: '* 必填 *'},
-            checkbox: {direction: 'u', tipMsg: '', emptyMsg: '* 必填 *'},
-            checkboxList: {direction: 'u', name: '', tipMsg: '', emptyMsg: '* 必填 *', minLength: false, minErrorMsg: '', maxLength: false, maxErrorMsg: ''}
         },
         validateLib: {
             callback: function (val, ops, $fields) {

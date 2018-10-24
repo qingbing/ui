@@ -1,12 +1,5 @@
 let config = {
     valid: {
-        choice: {
-            'default': '请输入有效的值',
-            'less': '请至少选中 %s 个选项',
-            'more': '最多只能选中 %s 个选项',
-            'between': '请选择 %s 至 %s 个选项'
-        },
-
 
         between: {
             'default': '请输入在 %s 和 %s 之间的数值',
