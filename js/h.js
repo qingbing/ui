@@ -198,6 +198,57 @@ if (typeof md5 === 'undefined'){
         }
     };
 
+    let Json = {
+        merge : function () {
+            if (0 === arguments.length) {
+                return {};
+            }
+            let isExtend = true, i = 0;
+            if (VType.isBoolean(arguments[0])) {
+                isExtend = arguments[0];
+                i = 1;
+            }
+
+            if (isExtend) {
+                let R = {};
+                for (; i < arguments.length; i++) {
+                    let t = arguments[i];
+                    if (!VType.isObject(t)) {
+                        continue;
+                    }
+                    Unit.each(t, function (k, v) {
+                        R[k] = v;
+                    });
+                }
+                return R;
+            } else {
+                let t = arguments[i];
+                if (!VType.isObject(t)) {
+                    return {};
+                }
+                let R = {};
+                Unit.each(t, function (k, v) {
+                    R[k] = v;
+                });
+
+                i++;
+                for (; i < arguments.length; i++) {
+                    let t = arguments[i];
+                    if (!VType.isObject(t)) {
+                        continue;
+                    }
+                    Unit.each(t, function (k, v) {
+                        if (!VType.isDefined(R[k])) {
+                            return true;
+                        }
+                        R[k] = v;
+                    });
+                }
+                return R;
+            }
+        }
+    };
+
     let Url = {
         encode: function (v) {
             return encodeURIComponent(v);
@@ -401,6 +452,8 @@ if (typeof md5 === 'undefined'){
         hash: Unit.hash,
         toJson: Unit.toObject,
         toString: Unit.toString,
+
+        merge: Json.merge,
 
         trim: Str.trim,
         replace: Str.replace,

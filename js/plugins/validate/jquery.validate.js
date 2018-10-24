@@ -1,204 +1,38 @@
 (function ($) {
-    $.fn.validator = {
-        helper: {
-            pattern: function (val, pattern) {
-                return pattern.test(val);
-            }
-        },
-        config: {
-            choice: {
-                max: false,
-                min: 1
-            },
-            checked: {
-                allowEmpty: false
-            },
-            file: {
-                allowEmpty: true,
-                exts: false
-            },
-            required: {},
-            preg : {
-                allowEmpty: true,
-                pattern: ''
-            },
-            password: {
-                allowEmpty: false,
-                pattern: '/^.{6,18}$/'
-            },
-            compare: {
-                compareTarget: undefined
-            }
-        },
-        messages: {
-            choice: {
-                placeholder: "请选择选项",
-                message: " * 请选择 * ",
-                length: '请选中 %s 个选项',
-                less: '请至少选中 %s 个选项',
-                more: '最多只能选中 %s 个选项',
-                between: '请选择 %s 至 %s 个选项'
-            },
-            checked: {
-                placeholder: "请勾选",
-                message: "请勾选"
-            },
-            file: {
-                placeholder: "请选择有效的文件",
-                message: "请选择有效的文件",
-                extMessage: "仅支持 %s 类型的文件",
-            },
-            required: {
-                placeholder: "必填",
-                message: " * 必填 * "
-            },
-            preg : {
-                placeholder: "请输入",
-                message: "输入不合法"
-            },
-            password: {
-                placeholder: "请输入密码",
-                message: "密码输入格式不正确"
-            },
-            compare: {
-                placeholder: "请输入确认信息",
-                message: "信息确认不一致"
-            }
-        },
-        rules: {}
-    };
-    // 选项规则，用于 select 和 input:checkbox-group
-    $.fn.validator.rules.choice = function ($field, op, init) {
-        if (true === init) {
-            if (op.max > 0) {
-                if (op.min > 0) {
-                    if (op.max === op.min) {
-                        op.message = H.replace(op.length, op.max);
-                    } else {
-                        op.message = H.replace(op.between, [op.min, op.max]);
-                    }
-                } else {
-                    op.message = H.replace(op.more, op.max);
-                }
-            } else if (op.min > 0) {
-                op.message = H.replace(op.less, op.min);
-            }
-            return op;
-        }
-        let selectLen;
-        if ('SELECT' === $field.get(0).tagName) {
-            selectLen = $field.find('option:selected').length;
-        } else {
-            selectLen = $field.filter(':checked').length;
-        }
-        if (op.min > 0 && selectLen < op.min) {
-            return op.message;
-        }
-        if (op.max > 0 && selectLen > op.max) {
-            return op.message;
-        }
-        return true;
-    };
-    // 是否有选择，主要用于 input:checkbox 和 input:radio-group， 也可以用于input:checkbox-group
-    $.fn.validator.rules.checked = function ($field, op, init) {
-        if (true === init) {
-            return op;
-        }
-        if (!op.allowEmpty && 0 === $field.filter(':checked').length) {
-            return op.message;
-        }
-        return true;
-    };
-    // 仅适用于 input:file
-    $.fn.validator.rules.file = function ($field, op, init) {
-        if (true === init) {
-            if (H.isArray(op.exts)) {
-                op.extMessage = H.replace(op.extMessage, op.exts.join(','))
-            }
-            return op;
-        }
-        let val = $field.val();
-        if (!op.allowEmpty && H.isEmpty(val)) {
-            return op.message;
-        }
-        if (!H.isEmpty(op.exts) && !H.isEmpty(val)) {
-            if (-1 === $.inArray(val.substring(val.lastIndexOf('.') + 1), op.exts)) {
-                return op.extMessage;
-            }
-        }
-        return true;
-    };
-    // 自定义正则验证
-    $.fn.validator.rules.preg = function ($field, op, init) {
-        if (true === init) {
-            op.pattern = H.toJson(op.pattern);
-            if (!H.isObject(op.pattern)) {
-                $.alert("不是合法的正则表达式", 'warning');
-                return false;
-            }
-            return op;
-        }
-        let val = $field.val();
-        if (!op.allowEmpty && H.isEmpty(val)) {
-            return op.message;
-        }
-        if (!H.isEmpty(op.exts) && !H.isEmpty(val)) {
-            if (-1 === $.inArray(val.substring(val.lastIndexOf('.') + 1), op.exts)) {
-                return op.extMessage;
-            }
-        }
-        return true;
-    };
-    // 必填项规则, 可以用于 select
-    $.fn.validator.rules.required = function ($field, op, init) {
-        if (true === init) {
-            return op;
-        }
-        let val = $field.val().trim();
-        if (val.length > 0) {
-            return true;
-        }
-        return op.message;
-    };
-    // 密码验证规则
-    $.fn.validator.rules.password = function ($field, op, init) {
-        if (true === init) {
-            op.pattern = H.toJson(op.pattern);
-            if (!H.isObject(op.pattern)) {
-                $.alert("不是合法的正则表达式", 'warning');
-                return false;
-            }
-            return op;
-        }
-        if (op === false) {
-            return "代码参数有误";
-        }
-        if (!op.allowEmpty && !$.fn.validator.helper.pattern($field.val(), op.pattern)) {
-            return op.message;
-        }
-        return true;
-    };
-    // 同另一个元素比较
-    $.fn.validator.rules.compare = function ($field, op, init) {
-        if (true === init) {
-            op.$compareTarget = $(op.compareTarget);
-            if (op.$compareTarget.length !== 1) {
-                $.alert("必须设置一个对比的元素", 'warning');
-                return false;
-            }
-            return op;
-        }
-        if (op === false) {
-            return "代码参数有误";
-        }
-        if ($field.val() !== op.$compareTarget.val()) {
-            return op.message;
-        }
-        return true;
-    };
-
     let PM = new ParamsManager('validate');
     let L = {
+        messages: {},
+        validTypes: {
+            required: {
+                messages: {
+                    tipMsg: '请输入有效信息',
+                    emptyMsg: '信息不能为空'
+                },
+                fixed: {
+                    allowEmpty: false
+                },
+                rules: {
+                    postData: '',
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            email: {
+                messages: {
+                    tipMsg: '请输入有效邮箱',
+                    emptyMsg: '邮箱不能为空',
+                    errorMsg: '邮箱输入无效'
+                },
+                fixed: {
+                    pattern: /\w+([-+.\']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
+                },
+                rules: {
+                    allowEmpty: true,
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            }
+        },
         config: {
             ops: {
                 validateBtn: '#validateBtn',
@@ -208,7 +42,6 @@
                 successMsg: '验证成功',
                 failMsg: '没有全部通过验证',
                 callback: undefined,
-                allowEmptyField: false
             }
         },
         initOp: function ($form, op) {
@@ -217,29 +50,33 @@
                 return tp;
             }
             // 验证字段检验并绑定
-            let $validFields = $form.find('[data-valid]');
+            let $validFields = $form.find('[data-valid-type]');
             for (let i = 0; i < $validFields.length; i++) {
                 let $field = $validFields.eq(i);
-                let validType = H.toJson($field.data('valid'));
+                let validType = $field.data('valid-type');
+                if (!H.isDefined(L.validTypes[validType])) {
+                    continue;
+                }
+
+                let param = H.merge(H.merge(false, H.merge(L.validTypes[validType].messages, L.validTypes[validType].rules), H.toJson($field.data('valid-params'))), L.validTypes[validType].fixed);
+
                 let fieldOps = {
-                    validType: {},
-                    placeholder: undefined,
-                    $group: $field.closest('.form-group').addClass('has-feedback')
+                    type: validType,
+                    $group: $field.closest('.form-group').addClass('has-feedback'),
+                    param: {}
                 };
-                H.each(validType, function (type, param) {
-                    if ('placeholder' === type) {
-                        fieldOps.placeholder = param;
-                        return true;
-                    }
-                    if (!$.fn.validator.rules[type]) {
-                        $.alert(H.replace('不存在的验证规则 "%s"', type));
-                        return true;
-                    }
-                    fieldOps.validType[type] = $.fn.validator.rules[type](undefined, $.extend(true, {}, $.fn.validator.config[type], $.fn.validator.messages[type], param), true);
-                    if (!fieldOps.placeholder && fieldOps.validType[type].placeholder) {
-                        fieldOps.placeholder = fieldOps.validType[type].placeholder;
+                H.each(param, function (k, v) {
+                    if ('' !== v) {
+                        fieldOps.param[k] = v;
                     }
                 });
+
+                if (H.isFunction(L.validTypes[validType].initParam)) {
+                    if (false === L.validTypes[validType].initParam(fieldOps.param)) {
+                        continue;
+                    }
+                }
+
                 // 处理默认显示
                 let tagName = $field.get(0).tagName;
                 let _triggerEvent = 'blur';
@@ -329,6 +166,55 @@
             }
             return true;
         },
+        validLib: {
+            pattern: function (val, param) {
+                if (param.pattern.test(val)) {
+                    return true;
+                }
+                return param.errorMsg;
+            },
+            ajaxUrl: function (val, param) {
+                var res = H.ajax(param.ajaxUrl)
+
+
+                var r;
+                $.ajax({
+                    url: ops.ajaxUrl,
+                    type: 'POST',
+                    async: false,
+                    dataType: 'json',
+                    data: E.merge(ops.postData, {param: val}),
+                    success: function (data) {
+                        if (0 == data.code) {
+                            r = true;
+                        } else {
+                            r = data.message;
+                        }
+                    }
+                });
+                if ('y' === r) {
+                    return true;
+                }
+                return r;
+                console.log(23);
+
+                console.log(val, param);
+                return true;
+
+            },
+            callback: function (val, param) {
+                if (H.isFunction(param.callback)) {
+                    return param.callback(val, param);
+                }
+                param.callback = H.toJson(param.callback);
+                if (H.isFunction(param.callback)) {
+                    return param.callback(val, param);
+                } else {
+                    delete param.callback;
+                    return true;
+                }
+            }
+        },
         func: {
             setOption: function ($field, op) {
                 $field.data("__valid_data", op);
@@ -343,7 +229,7 @@
                 if (true === reset) {
                     fop.$help.hide();
                 } else {
-                    fop.$help.html(fop.placeholder).show();
+                    fop.$help.html(fop.param.tipMsg).show();
                 }
             },
             showError: function ($field, msg) {
@@ -360,16 +246,34 @@
             },
             checkField: function ($field) {
                 let fop = L.func.getOption($field);
-                var isSuccess = true;
-                H.each(fop.validType, function (type, param) {
-                    let message = $.fn.validator.rules[type](fop.$field, param);
-                    if (true === message) {
-                        return true;
-                    }
-                    isSuccess = false;
-                    L.func.showError($field, message);
+                let rule = L.validTypes[fop.type];
+                let val;
+                if (H.isFunction(rule.getVal)) {
+                    val = rule.getVal($field);
+                } else {
+                    val = $field.val();
+                }
+
+                if (fop.param.allowEmpty && H.isEmpty(val)) {
+                    L.func.showTip($field, true);
+                    return true;
+                }
+                if (H.isEmpty(val)) {
+                    L.func.showError($field, fop.param.emptyMsg);
                     return false;
+                }
+                let isSuccess = true;
+                H.each(fop.param, function (fname, v) {
+                    if (H.isFunction(L.validLib[fname])) {
+                        let res = L.validLib[fname](val, fop.param);
+                        if (true !== res) {
+                            isSuccess = false;
+                            L.func.showError($field, res);
+                            return false;
+                        }
+                    }
                 });
+
                 if (isSuccess) {
                     L.func.showSuccess($field);
                 }
@@ -377,7 +281,7 @@
             },
             validForm: function ($form) {
                 let ops = PM.getOption($form);
-                var isSuccess = true;
+                let isSuccess = true;
                 ops.$validFields.each(function () {
                     if (true !== L.func.checkField($(this))) {
                         isSuccess = false;
@@ -443,11 +347,14 @@
         }
     };
 
+    /**
+     */
     $.fn.extend({
         validate: function (settings) {
             H.isObject(settings) || (settings = {});
-            $.extend($.fn.validator.messages, settings.messages ? settings.messages : {});
-            $.extend($.fn.validator.rules, settings.rules ? settings.rules : {});
+            $.extend(L.messages, settings.messages ? settings.messages : {});
+            $.extend(L.rules, settings.rules ? settings.rules : {});
+
             $(this).each(function () {
                 let $this = $(this);
                 // 扩展参数设置
