@@ -31,21 +31,191 @@
         <dl class="form-group row">
             <dt class="control-label col-md-3"><label>required:</label></dt>
             <dd class="col-md-6">
-                <input type="text" class="form-control" data-valid-type="required"
-                       data-valid-params="{ ajaxUrl:'do.php',callback:'callback'}">
+                <input type="text" class="form-control"
+                       data-valid-type="required"
+                       data-callback="callback"
+                       data-ajax-url="ajaxUrl.php"
+                       data-post-data="{username:'u', sex:'x'}">
             </dd>
         </dl>
         <dl class="form-group row">
             <dt class="control-label col-md-3"><label>Email:</label></dt>
             <dd class="col-md-6">
-                <input type="text" class="form-control" data-valid-type="email" data-valid-params="{}">
+                <input type="text" class="form-control"
+                       data-valid-type="email"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Url:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="url"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Ip:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="ip"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Phone:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="phone"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Mobile:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="mobile"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Contact:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="contact"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Fax:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="fax"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>zipcode:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="zipcode"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Datetime:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="datetime"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Date:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="date"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Username:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="username"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Password:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control" id="password"
+                       data-valid-type="password"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Confirm Password:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="compare"
+                       data-compare="#password">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Preg:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="preg"
+                       data-pattern="/^\d{2,4}$/"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Between String:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="string"
+                       data-min="2"
+                       data-max="5"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Equal String:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="string"
+                       data-equal="2"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Numeric:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="numeric"
+                       data-min="2"
+                       data-max="5"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Integer:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="integer"
+                       data-min="2"
+                       data-max="5"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>Money:</label></dt>
+            <dd class="col-md-6">
+                <input type="text" class="form-control"
+                       data-valid-type="money"
+                       data-min="2"
+                       data-max="5"
+                       data-allow-empty="false">
+            </dd>
+        </dl>
+        <dl class="form-group row">
+            <dt class="control-label col-md-3"><label>文件选择:</label></dt>
+            <dd class="col-md-6">
+                <input type="file" class="form-control"
+                       data-valid-type="file"
+                       data-allow-empty="false"
+                       data-suffix="['txt','zip', 'doc']"/>
             </dd>
         </dl>
 
         <dl class="form-group row">
             <dt class="control-label col-md-3"><label>城市:</label></dt>
             <dd class="col-md-6">
-                <select name="city" id="city" class="form-control">
+                <select name="city" id="city" class="form-control"
+                        data-valid-type="select"
+                        data-allow-empty="false">
                     <option value="">请选择</option>
                     <option value="北京">北京</option>
                     <option value="上海">上海</option>
@@ -53,67 +223,30 @@
                 </select>
             </dd>
         </dl>
-        <dl class="form-group row">
-            <dt class="control-label col-md-3"><label>warning:</label></dt>
-            <dd class="col-md-6">
-                <input type="text" class="form-control">
-            </dd>
-        </dl>
-        <dl class="form-group row">
-            <dt class="control-label col-md-3"><label>error:</label></dt>
-            <dd class="col-md-6">
-                <input type="text" class="form-control">
-            </dd>
-        </dl>
-        <dl class="form-group row">
-            <dt class="control-label col-md-3"><label>success:</label></dt>
-            <dd class="col-md-6">
-                <input type="text" class="form-control">
-            </dd>
-        </dl>
-
 
         <dl class="form-group row">
-            <dt class="control-label col-md-3"><label>preg:</label></dt>
+            <dt class="control-label col-md-3"><label>品牌</label></dt>
             <dd class="col-md-6">
-                <input type="text" class="form-control"
-                       data-valid-type="{preg:{allowEmpty:false,pattern:'/\\d{2,3}/'}}">
+                <select name="brand" multiple="multiple" class="form-control"
+                        data-valid-type="choice"
+                        data-min="2"
+                        data-max="3"
+                        data-allow-empty="false">
+                    <option value="1">东芝</option>
+                    <option value="2">神州</option>
+                    <option value="3">联想</option>
+                    <option value="4">apple</option>
+                </select>
             </dd>
         </dl>
-
         <dl class="form-group row">
-            <dt class="control-label col-md-3"><label>password:</label></dt>
-            <dd class="col-md-6">
-                <input type="text" class="form-control" id="password" data-valid-type="{password:true}">
-            </dd>
-        </dl>
-        <dl class="form-group row">
-            <dt class="control-label col-md-3"><label>config password:</label></dt>
-            <dd class="col-md-6">
-                <input type="text" class="form-control" data-valid-type="{compare:{target:'#password'}}">
-            </dd>
-        </dl>
-
-        <dl class="form-group row">
-            <dt class="control-label col-md-3"><label>文件选择:</label></dt>
-            <dd class="col-md-6">
-                <input type="file" class="form-control"
-                       data-valid-type="{file:{allowEmpty:false,exts:['txt','zip', 'doc']}}"/>
-            </dd>
-        </dl>
-
-        <dl class="form-group row">
-            <dt class="control-label col-md-3"><label>留言:</label></dt>
-            <dd class="col-md-6">
-                <textarea name="mark" id="mark" cols="30" rows="10" class="form-control"></textarea>
-            </dd>
-        </dl>
-
-        <dl class="form-group row">
-            <dt class="control-label col-md-3"><label>爱好</label></dt>
+            <dt class="control-label col-md-3"><label>爱好2</label></dt>
             <dd class="col-md-6">
                 <div class="checkbox checkbox-inline">
-                    <label><input type="checkbox" name="hobby[]" value="lanqiu" data-valid-type="{choice:{max:1}}">
+                    <label><input type="checkbox" name="hobby[]" value="lanqiu"
+                                  data-equal="2"
+                                  data-valid-type="choice"
+                                  data-allow-empty="false">
                         篮球</label>
                 </div>
                 <div class="checkbox checkbox-inline">
@@ -124,12 +257,11 @@
                 </div>
             </dd>
         </dl>
-
         <dl class="form-group row">
             <dt class="control-label col-md-3"><label>爱好</label></dt>
             <dd class="col-md-6">
                 <div class="checkbox">
-                    <label><input type="checkbox" name="choice[]" data-valid-type="{choice:true}"> 篮球</label>
+                    <label><input type="checkbox" name="choice[]" data-valid-type="choice"> 篮球</label>
                 </div>
                 <div class="checkbox">
                     <label><input type="checkbox" name="choice[]"> 足球</label>
@@ -141,22 +273,10 @@
         </dl>
 
         <dl class="form-group row">
-            <dt class="control-label col-md-3"><label>品牌</label></dt>
-            <dd class="col-md-6">
-                <select name="brand" multiple="multiple" class="form-control" data-valid-type="{choice:{min:2, max:3}}">
-                    <option value="1">东芝</option>
-                    <option value="2">神州</option>
-                    <option value="3">联想</option>
-                    <option value="4">apple</option>
-                </select>
-            </dd>
-        </dl>
-
-        <dl class="form-group row">
             <dt class="control-label col-md-3"><label>单选</label></dt>
             <dd class="col-md-6">
                 <div class="radio radio-inline">
-                    <label><input type="radio" name="checked0" value="1" data-valid-type="{checked:true}"> 篮球</label>
+                    <label><input type="radio" name="checked0" value="1" data-valid-type="checked"> 篮球</label>
                 </div>
                 <div class="radio radio-inline">
                     <label><input type="radio" name="checked0" value="2"> 足球</label>
@@ -171,7 +291,7 @@
             <dt class="control-label col-md-3"><label>单选</label></dt>
             <dd class="col-md-6">
                 <div class="radio">
-                    <label><input type="radio" name="checked" value="1" data-valid-type="{checked:true}"> 篮球</label>
+                    <label><input type="radio" name="checked" value="1" data-valid-type="checked"> 篮球</label>
                 </div>
                 <div class="radio">
                     <label><input type="radio" name="checked" value="2"> 足球</label>
@@ -186,7 +306,7 @@
             <dt class="control-label col-md-3"><label>单个复选框</label></dt>
             <dd class="col-md-6">
                 <div class="checkbox">
-                    <label><input type="checkbox" name="agree" data-valid-type="{checked:true}">I agree the site's
+                    <label><input type="checkbox" name="agree" data-valid-type="checked">I agree the site's
                         protocol!</label>
                 </div>
             </dd>

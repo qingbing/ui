@@ -1,10 +1,10 @@
 (function ($) {
     let PM = new ParamsManager('validate');
     let L = {
-        messages: {},
         validTypes: {
             required: {
-                messages: {
+                param: {
+                    postData: '',
                     tipMsg: '请输入有效信息',
                     emptyMsg: '信息不能为空'
                 },
@@ -12,24 +12,406 @@
                     allowEmpty: false
                 },
                 rules: {
-                    postData: '',
                     ajaxUrl: '',
                     callback: ''
                 }
             },
             email: {
-                messages: {
-                    tipMsg: '请输入有效邮箱',
-                    emptyMsg: '邮箱不能为空',
-                    errorMsg: '邮箱输入无效'
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的邮箱地址',
+                    emptyMsg: '邮箱地址不能为空',
+                    errorMsg: '邮箱地址输入无效'
                 },
                 fixed: {
                     pattern: /\w+([-+.\']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
                 },
                 rules: {
-                    allowEmpty: true,
                     ajaxUrl: '',
                     callback: ''
+                }
+            },
+            url: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的URL地址',
+                    emptyMsg: 'URL地址不能为空',
+                    errorMsg: 'URL地址输入无效'
+                },
+                fixed: {
+                    pattern: /^https?:\/\/[\w-]+(\.[\w-]+)+/i
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            ip: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的IP地址',
+                    emptyMsg: 'IP地址不能为空',
+                    errorMsg: 'IP地址输入无效'
+                },
+                fixed: {
+                    pattern: /^(1\d{2}|2[0-4]\d|25[0-4]|[1-9]\d?)(\.(1\d{2}|2[0-4]\d|25[0-4]|[1-9]?\d)){3}$/ // (1~255).(0~255).(0~255).(0~255)
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            phone: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的电话号码(eg.010-6666666[-666])',
+                    emptyMsg: '电话号码不能为空',
+                    errorMsg: '电话号码输入无效'
+                },
+                fixed: {
+                    pattern: /^0[1-9]\d{1,2}-[1-9]\d{6,7}(-\d{1,4})?$/
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            mobile: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的手机号码',
+                    emptyMsg: '手机号码不能为空',
+                    errorMsg: '手机号码输入无效'
+                },
+                fixed: {
+                    pattern: /^0?1\d{10}$/
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            contact: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的手机或电话号码',
+                    emptyMsg: '联系方式不能为空',
+                    errorMsg: '联系方式输入无效'
+                },
+                fixed: {
+                    pattern: /^(0[1-9]\d{1,2}-[1-9]\d{6,7}(-\d{1,4})?)|(0?1\d{10})$/
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            fax: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的传真号(010-6666666[-666])',
+                    emptyMsg: '传真号不能为空',
+                    errorMsg: '传真号输入无效'
+                },
+                fixed: {
+                    pattern: /^0[1-9]\d{1,2}-[1-9]\d{6,7}(-\d{1,4})?$/
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            zipcode: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的邮政编码',
+                    emptyMsg: '邮政编码不能为空',
+                    errorMsg: '邮政编码输入无效'
+                },
+                fixed: {
+                    pattern: /^\d{6}$/
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            datetime: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的时间(eg:2000-01-01 01:01:01)',
+                    emptyMsg: '时间不能为空',
+                    errorMsg: '时间输入无效'
+                },
+                fixed: {
+                    pattern: /^(\d{2})?\d{2}-[0|1]?\d-[0-3]?\d [0-2]?\d:[0-5]?\d:[0-5]?\d$/
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            date: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的日期(eg:2000-01-01)',
+                    emptyMsg: '日期不能为空',
+                    errorMsg: '日期输入无效'
+                },
+                fixed: {
+                    pattern: /^(\d{2})?\d{2}-[0|1]?\d-[0-3]?\d$/
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            username: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的用户名（2-18个字符）',
+                    emptyMsg: '用户名不能为空',
+                    errorMsg: '用户名输入无效'
+                },
+                fixed: {
+                    pattern: /^[\u4e00-\u9fa5a-zA-Z0-9_\.]{2,18}$/
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            password: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的密码（6-18个字符）',
+                    emptyMsg: '密码不能为空',
+                    errorMsg: '密码输入无效'
+                },
+                fixed: {
+                    pattern: /^.{6,18}$/
+                },
+                rules: {
+                    ajaxUrl: '',
+                    callback: ''
+                }
+            },
+            compare: {
+                param: {
+                    tipMsg: '请输入确认信息',
+                    errorMsg: '确认信息不一致'
+                },
+                rules: {
+                    compare: '',
+                },
+                initParam: function (param) {
+                    let $compare = $(param.compare);
+                    if ($compare.length !== 1) {
+                        $.alert("信息确认规则须设置有且仅有一个对比元素", 'warning');
+                        return false;
+                    }
+                    param.$compare = $compare;
+                }
+            },
+            preg: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的信息',
+                    emptyMsg: '信息不能为空',
+                    errorMsg: '信息输入无效'
+                },
+                rules: {
+                    pattern: '',
+                    ajaxUrl: '',
+                    callback: ''
+                },
+                initParam: function (param) {
+                    if (H.isString(param.pattern)) {
+                        param.pattern = H.toJson(param.pattern);
+                        if (!H.isObject(param.pattern)) {
+                            $.alert("正则规则无效", 'warning');
+                            return false;
+                        }
+                    }
+                }
+            },
+            string: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的信息',
+                    emptyMsg: '信息不能为空',
+                    errorMsg: '信息输入无效',
+                    equalMsg: '请输入 %s 个字符',
+                    minErrorMsg: '信息不能小于 %s 个字符',
+                    maxErrorMsg: '信息不能大于 %s 个字符'
+                },
+                fixed: {
+                    pattern: /^(.|\s)+$/
+                },
+                rules: {
+                    equal: '',
+                    min: '',
+                    max: '',
+                    ajaxUrl: '',
+                    callback: ''
+                },
+                initParam: function (param) {
+                    param.equalMsg = H.replace(param.equalMsg, param.equal);
+                    param.minErrorMsg = H.replace(param.minErrorMsg, param.min);
+                    param.maxErrorMsg = H.replace(param.maxErrorMsg, param.max);
+                },
+                getVal: function ($field) {
+                    let len = $field.val().length;
+                    return 0 === len ? '' : len;
+                }
+            },
+            numeric: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的数字',
+                    emptyMsg: '数字不能为空',
+                    errorMsg: '数字输入无效',
+                    minErrorMsg: '输入数字不能小于 %s',
+                    maxErrorMsg: '输入数字不能大于 %s'
+                },
+                fixed: {
+                    pattern: /^-?(0|([1-9]\d*))(\.\d{1,})?$/
+                },
+                rules: {
+                    min: '',
+                    max: '',
+                    ajaxUrl: '',
+                    callback: ''
+                },
+                initParam: function (param) {
+                    param.minErrorMsg = H.replace(param.minErrorMsg, param.min);
+                    param.maxErrorMsg = H.replace(param.maxErrorMsg, param.max);
+                }
+            },
+            integer: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的整数',
+                    emptyMsg: '整数不能为空',
+                    errorMsg: '整数输入无效',
+                    minErrorMsg: '输入整数不能小于 %s',
+                    maxErrorMsg: '输入整数不能大于 %s'
+                },
+                fixed: {
+                    pattern: /^-?(0|([1-9]\d*))$/
+                },
+                rules: {
+                    min: '',
+                    max: '',
+                    ajaxUrl: '',
+                    callback: ''
+                },
+                initParam: function (param) {
+                    param.minErrorMsg = H.replace(param.minErrorMsg, param.min);
+                    param.maxErrorMsg = H.replace(param.maxErrorMsg, param.max);
+                }
+            },
+            money: {
+                param: {
+                    allowEmpty: true,
+                    postData: '',
+                    tipMsg: '请输入有效的金额',
+                    emptyMsg: '金额不能为空',
+                    errorMsg: '金额输入无效',
+                    minErrorMsg: '输入金额不能小于 %s',
+                    maxErrorMsg: '输入金额不能大于 %s'
+                },
+                fixed: {
+                    pattern: /^(0|([1-9]\d*))(\.\d{1,2})?$/
+                },
+                rules: {
+                    min: '',
+                    max: '',
+                    ajaxUrl: '',
+                    callback: ''
+                },
+                initParam: function (param) {
+                    param.minErrorMsg = H.replace(param.minErrorMsg, param.min);
+                    param.maxErrorMsg = H.replace(param.maxErrorMsg, param.max);
+                }
+            },
+            file: {
+                param: {
+                    allowEmpty: true,
+                    tipMsg: '请选择有效的文件',
+                    emptyMsg: '请选择有效的文件',
+                    errorMsg: '',
+                    suffix: ''// 文件后缀列表，数组
+                },
+                initParam: function (param) {
+                    param.suffix = H.toJson(param.suffix);
+                    H.isString(param.suffix) && (param.suffix = [param.suffix]);
+                    if (!H.isEmpty(param.suffix) && H.isEmpty(param.errorMsg)) {
+                        param.errorMsg = H.replace('仅支持 %s 类型的文件', param.suffix.join(','));
+                    }
+                }
+            },
+            select: {
+                param: {
+                    allowEmpty: true,
+                    tipMsg: '请选择选项',
+                    emptyMsg: '请选择选项',
+                }
+            },
+            choice: {
+                param: {
+                    allowEmpty: true,
+                    tipMsg: '请选择',
+                    emptyMsg: '请选择选项',
+                    equalMsg: '请选中 %s 个选项',
+                    minErrorMsg: '请至少选中 %s 个选项',
+                    maxErrorMsg: '最多只能选中 %s 个选项'
+                },
+                rules: {
+                    equal: '',
+                    min: '',
+                    max: ''
+                },
+                initParam: function (param) {
+                    param.equalMsg = H.replace(param.equalMsg, param.equal);
+                    param.minErrorMsg = H.replace(param.minErrorMsg, param.min);
+                    param.maxErrorMsg = H.replace(param.maxErrorMsg, param.max);
+                },
+                getVal: function ($field) {
+                    let len;
+                    if ('SELECT' === $field.get(0).tagName) {
+                        len = $field.find('option:selected').length;
+                    } else {
+                        len = $field.filter(':checked').length;
+                    }
+                    return 0 === len ? '' : len;
+                }
+            },
+            checked: {
+                param: {
+                    allowEmpty: false,
+                    tipMsg: '请勾选',
+                    emptyMsg: '请勾选'
+                },
+                getVal: function ($field) {
+                    let len = $field.filter(':checked').length;
+                    return 0 === len ? '' : len;
                 }
             }
         },
@@ -58,8 +440,7 @@
                     continue;
                 }
 
-                let param = H.merge(H.merge(false, H.merge(L.validTypes[validType].messages, L.validTypes[validType].rules), H.toJson($field.data('valid-params'))), L.validTypes[validType].fixed);
-
+                let param = H.merge(H.merge(false, H.merge(L.validTypes[validType].param, L.validTypes[validType].rules), $field.data()), L.validTypes[validType].fixed);
                 let fieldOps = {
                     type: validType,
                     $group: $field.closest('.form-group').addClass('has-feedback'),
@@ -174,33 +555,26 @@
                 return param.errorMsg;
             },
             ajaxUrl: function (val, param) {
-                var res = H.ajax(param.ajaxUrl)
-
-
-                var r;
+                if (!H.isObject(param.postData)) {
+                    param.postData = H.toJson(param.postData);
+                }
+                let postData = H.merge(param.postData, {param: val});
+                let R;
                 $.ajax({
-                    url: ops.ajaxUrl,
-                    type: 'POST',
+                    url: param.ajaxUrl,
+                    type: 'post',
                     async: false,
                     dataType: 'json',
-                    data: E.merge(ops.postData, {param: val}),
-                    success: function (data) {
-                        if (0 == data.code) {
-                            r = true;
+                    data: postData,
+                    success: function (rs) {
+                        if (0 !== parseInt(rs.code)) {
+                            R = rs.message
                         } else {
-                            r = data.message;
+                            R = true;
                         }
                     }
                 });
-                if ('y' === r) {
-                    return true;
-                }
-                return r;
-                console.log(23);
-
-                console.log(val, param);
-                return true;
-
+                return R;
             },
             callback: function (val, param) {
                 if (H.isFunction(param.callback)) {
@@ -213,6 +587,36 @@
                     delete param.callback;
                     return true;
                 }
+            },
+            compare: function (val, param) {
+                if (val !== param.$compare.val()) {
+                    return param.errorMsg;
+                }
+                return true;
+            },
+            equal: function (val, param) {
+                if (val === param.equal) {
+                    return true;
+                }
+                return param.equalMsg;
+            },
+            min: function (val, param) {
+                if (val >= param.min) {
+                    return true;
+                }
+                return param.minErrorMsg;
+            },
+            max: function (val, param) {
+                if (val <= param.max) {
+                    return true;
+                }
+                return param.maxErrorMsg;
+            },
+            suffix: function (val, param) {
+                if (!H.isEmpty(param.suffix) && -1 === $.inArray(val.substring(val.lastIndexOf('.') + 1), param.suffix)) {
+                    return param.errorMsg;
+                }
+                return true;
             }
         },
         func: {
@@ -249,21 +653,35 @@
                 let rule = L.validTypes[fop.type];
                 let val;
                 if (H.isFunction(rule.getVal)) {
-                    val = rule.getVal($field);
+                    val = rule.getVal(fop.$field);
                 } else {
                     val = $field.val();
                 }
 
-                if (fop.param.allowEmpty && H.isEmpty(val)) {
-                    L.func.showTip($field, true);
-                    return true;
+                if (fop.type !== 'compare') { // compare 规则不验证空
+                    if (fop.param.allowEmpty && H.isEmpty(val)) {
+                        L.func.showTip($field, true);
+                        return true;
+                    }
+                    if (H.isEmpty(val)) {
+                        L.func.showError($field, fop.param.emptyMsg);
+                        return false;
+                    }
                 }
-                if (H.isEmpty(val)) {
-                    L.func.showError($field, fop.param.emptyMsg);
-                    return false;
+                // 正则验证放在首位
+                if (H.isObject(fop.param.pattern)) {
+                    let res = L.validLib.pattern(val, fop.param);
+                    if (true !== res) {
+                        L.func.showError($field, res);
+                        return false;
+                    }
                 }
+
                 let isSuccess = true;
-                H.each(fop.param, function (fname, v) {
+                H.each(fop.param, function (fname) {
+                    if ('pattern' === fname) {
+                        return true;
+                    }
                     if (H.isFunction(L.validLib[fname])) {
                         let res = L.validLib[fname](val, fop.param);
                         if (true !== res) {
@@ -350,11 +768,7 @@
     /**
      */
     $.fn.extend({
-        validate: function (settings) {
-            H.isObject(settings) || (settings = {});
-            $.extend(L.messages, settings.messages ? settings.messages : {});
-            $.extend(L.rules, settings.rules ? settings.rules : {});
-
+        validate: function () {
             $(this).each(function () {
                 let $this = $(this);
                 // 扩展参数设置
