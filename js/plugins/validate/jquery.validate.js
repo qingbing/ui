@@ -435,6 +435,9 @@
             let $validFields = $form.find('[data-valid-type]');
             for (let i = 0; i < $validFields.length; i++) {
                 let $field = $validFields.eq(i);
+                if ($field.data('isInit')) {
+                    continue;
+                }
                 let validType = $field.data('valid-type');
                 if (!H.isDefined(L.validTypes[validType])) {
                     continue;
@@ -482,8 +485,8 @@
                         if ($help.length < 1) {
                             $help = $('<div class="help-block">' + fieldOps.placeholder + '</div>').appendTo($box);
                         }
-                        // 因为 input-radio 和 input-checkbox 是组的概念，将同组都设置为触发器
-                        $field = $box.find('[name="' + $field.attr('name') + '"]');
+                        $field = $box.find('[name="' + $field.attr('name') + '"]') // 因为 input-radio 和 input-checkbox 是组的概念，将同组都设置为触发器
+                            .data('isInit', true); // 防止复选组或单选组多个表单域都设置valid-type的情况被重复初始化
                     }
                 }
 
@@ -716,6 +719,7 @@
                 L.func.showTip($(this));
             },
             fieldValid: function (e) {
+                console.log(444);
                 L.func.checkField($(this));
             },
             formReset: function (e) {

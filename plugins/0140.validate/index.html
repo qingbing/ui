@@ -261,13 +261,14 @@
             <dt class="control-label col-md-3"><label>爱好</label></dt>
             <dd class="col-md-6">
                 <div class="checkbox">
+                     <!-- checkbox组 "valid-type"可以指定某一个或都指定 -->
                     <label><input type="checkbox" name="choice[]" data-valid-type="choice"> 篮球</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="choice[]"> 足球</label>
+                    <label><input type="checkbox" name="choice[]" data-valid-type="choice"> 足球</label>
                 </div>
                 <div class="checkbox">
-                    <label><input type="checkbox" name="choice[]"> 篮球</label>
+                    <label><input type="checkbox" name="choice[]" data-valid-type="choice"> 篮球</label>
                 </div>
             </dd>
         </dl>
@@ -275,14 +276,15 @@
         <dl class="form-group row">
             <dt class="control-label col-md-3"><label>单选</label></dt>
             <dd class="col-md-6">
+                <!-- checkbox组 "valid-type"可以指定某一个或都指定 -->
                 <div class="radio radio-inline">
                     <label><input type="radio" name="checked0" value="1" data-valid-type="checked"> 篮球</label>
                 </div>
                 <div class="radio radio-inline">
-                    <label><input type="radio" name="checked0" value="2"> 足球</label>
+                    <label><input type="radio" name="checked0" value="2" data-valid-type="checked"> 足球</label>
                 </div>
                 <div class="radio radio-inline">
-                    <label><input type="radio" name="checked0" value="3"> 篮球</label>
+                    <label><input type="radio" name="checked0" value="3" data-valid-type="checked"> 篮球</label>
                 </div>
             </dd>
         </dl>
