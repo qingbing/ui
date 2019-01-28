@@ -719,7 +719,6 @@
                 L.func.showTip($(this));
             },
             fieldValid: function (e) {
-                console.log(444);
                 L.func.checkField($(this));
             },
             formReset: function (e) {
