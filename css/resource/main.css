@@ -23,3 +23,10 @@ a.badge:hover{color:#fff;text-decoration:none;cursor:pointer}
 
 /* for jquery.alert */
 .alert-box{width:50%;position:absolute;right:0;top:0;padding:10px;}
+
+/* page-header */
+.page-header{padding-bottom:9px;margin:40px 0 20px;border-bottom:1px solid #eee;}
+.lead {margin-bottom:20px;font-size:16px;font-weight:300;line-height:1.4;}
+@media (min-width:768px) {
+    .lead {font-size:21px;}
+}

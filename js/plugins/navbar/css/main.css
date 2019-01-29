@@ -1,7 +1,7 @@
 .w-navbar{min-height:50px;border:1px solid #e7e7e7;background-color:#f8f8f8;right:0;left:0;color:#777;}
 @media (min-width: 768px) {
     /* 大于等于768px */
-    .w-navbar{position:fixed;}
+    .w-navbar{position:fixed;z-index:999;}
 }
 .w-navbar .container{}
 .w-navbar-top{top:0;border-width:0 0 1px 1px;}
