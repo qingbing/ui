@@ -6,7 +6,8 @@
                 param: {
                     postData: '',
                     tipMsg: '请输入有效信息',
-                    emptyMsg: '信息不能为空'
+                    emptyMsg: '信息不能为空',
+                    helpBlock: ''
                 },
                 fixed: {
                     allowEmpty: false
@@ -22,7 +23,8 @@
                     postData: '',
                     tipMsg: '请输入有效的邮箱地址',
                     emptyMsg: '邮箱地址不能为空',
-                    errorMsg: '邮箱地址输入无效'
+                    errorMsg: '邮箱地址输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /\w+([-+.\']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
@@ -38,7 +40,8 @@
                     postData: '',
                     tipMsg: '请输入有效的URL地址',
                     emptyMsg: 'URL地址不能为空',
-                    errorMsg: 'URL地址输入无效'
+                    errorMsg: 'URL地址输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^https?:\/\/[\w-]+(\.[\w-]+)+/i
@@ -54,7 +57,8 @@
                     postData: '',
                     tipMsg: '请输入有效的IP地址',
                     emptyMsg: 'IP地址不能为空',
-                    errorMsg: 'IP地址输入无效'
+                    errorMsg: 'IP地址输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^(1\d{2}|2[0-4]\d|25[0-4]|[1-9]\d?)(\.(1\d{2}|2[0-4]\d|25[0-4]|[1-9]?\d)){3}$/ // (1~255).(0~255).(0~255).(0~255)
@@ -70,7 +74,8 @@
                     postData: '',
                     tipMsg: '请输入有效的电话号码(eg.010-6666666[-666])',
                     emptyMsg: '电话号码不能为空',
-                    errorMsg: '电话号码输入无效'
+                    errorMsg: '电话号码输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^0[1-9]\d{1,2}-[1-9]\d{6,7}(-\d{1,4})?$/
@@ -86,7 +91,8 @@
                     postData: '',
                     tipMsg: '请输入有效的手机号码',
                     emptyMsg: '手机号码不能为空',
-                    errorMsg: '手机号码输入无效'
+                    errorMsg: '手机号码输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^0?1\d{10}$/
@@ -102,7 +108,8 @@
                     postData: '',
                     tipMsg: '请输入有效的手机或电话号码',
                     emptyMsg: '联系方式不能为空',
-                    errorMsg: '联系方式输入无效'
+                    errorMsg: '联系方式输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^(0[1-9]\d{1,2}-[1-9]\d{6,7}(-\d{1,4})?)|(0?1\d{10})$/
@@ -118,7 +125,8 @@
                     postData: '',
                     tipMsg: '请输入有效的传真号(010-6666666[-666])',
                     emptyMsg: '传真号不能为空',
-                    errorMsg: '传真号输入无效'
+                    errorMsg: '传真号输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^0[1-9]\d{1,2}-[1-9]\d{6,7}(-\d{1,4})?$/
@@ -134,7 +142,8 @@
                     postData: '',
                     tipMsg: '请输入有效的邮政编码',
                     emptyMsg: '邮政编码不能为空',
-                    errorMsg: '邮政编码输入无效'
+                    errorMsg: '邮政编码输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^\d{6}$/
@@ -150,7 +159,8 @@
                     postData: '',
                     tipMsg: '请输入有效的时间(eg:2000-01-01 01:01:01)',
                     emptyMsg: '时间不能为空',
-                    errorMsg: '时间输入无效'
+                    errorMsg: '时间输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^(\d{2})?\d{2}-[0|1]?\d-[0-3]?\d [0-2]?\d:[0-5]?\d:[0-5]?\d$/
@@ -166,7 +176,8 @@
                     postData: '',
                     tipMsg: '请输入有效的日期(eg:2000-01-01)',
                     emptyMsg: '日期不能为空',
-                    errorMsg: '日期输入无效'
+                    errorMsg: '日期输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^(\d{2})?\d{2}-[0|1]?\d-[0-3]?\d$/
@@ -182,7 +193,8 @@
                     postData: '',
                     tipMsg: '请输入有效的用户名（2-18个字符）',
                     emptyMsg: '用户名不能为空',
-                    errorMsg: '用户名输入无效'
+                    errorMsg: '用户名输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^[\u4e00-\u9fa5a-zA-Z0-9_\.]{2,18}$/
@@ -198,7 +210,8 @@
                     postData: '',
                     tipMsg: '请输入有效的密码（6-18个字符）',
                     emptyMsg: '密码不能为空',
-                    errorMsg: '密码输入无效'
+                    errorMsg: '密码输入无效',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^.{6,18}$/
@@ -211,7 +224,8 @@
             compare: {
                 param: {
                     tipMsg: '请输入确认信息',
-                    errorMsg: '确认信息不一致'
+                    errorMsg: '确认信息不一致',
+                    helpBlock: ''
                 },
                 rules: {
                     compare: '',
@@ -231,7 +245,8 @@
                     postData: '',
                     tipMsg: '请输入有效的信息',
                     emptyMsg: '信息不能为空',
-                    errorMsg: '信息输入无效'
+                    errorMsg: '信息输入无效',
+                    helpBlock: ''
                 },
                 rules: {
                     pattern: '',
@@ -257,7 +272,8 @@
                     errorMsg: '信息输入无效',
                     equalMsg: '请输入 %s 个字符',
                     minErrorMsg: '信息不能小于 %s 个字符',
-                    maxErrorMsg: '信息不能大于 %s 个字符'
+                    maxErrorMsg: '信息不能大于 %s 个字符',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^(.|\s)+$/
@@ -287,7 +303,8 @@
                     emptyMsg: '数字不能为空',
                     errorMsg: '数字输入无效',
                     minErrorMsg: '输入数字不能小于 %s',
-                    maxErrorMsg: '输入数字不能大于 %s'
+                    maxErrorMsg: '输入数字不能大于 %s',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^-?(0|([1-9]\d*))(\.\d{1,})?$/
@@ -311,7 +328,8 @@
                     emptyMsg: '整数不能为空',
                     errorMsg: '整数输入无效',
                     minErrorMsg: '输入整数不能小于 %s',
-                    maxErrorMsg: '输入整数不能大于 %s'
+                    maxErrorMsg: '输入整数不能大于 %s',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^-?(0|([1-9]\d*))$/
@@ -335,7 +353,8 @@
                     emptyMsg: '金额不能为空',
                     errorMsg: '金额输入无效',
                     minErrorMsg: '输入金额不能小于 %s',
-                    maxErrorMsg: '输入金额不能大于 %s'
+                    maxErrorMsg: '输入金额不能大于 %s',
+                    helpBlock: ''
                 },
                 fixed: {
                     pattern: /^(0|([1-9]\d*))(\.\d{1,2})?$/
@@ -357,7 +376,8 @@
                     tipMsg: '请选择有效的文件',
                     emptyMsg: '请选择有效的文件',
                     errorMsg: '',
-                    suffix: ''// 文件后缀列表，数组
+                    suffix: '', // 文件后缀列表，数组
+                    helpBlock: ''
                 },
                 initParam: function (param) {
                     param.suffix = H.toJson(param.suffix);
@@ -372,6 +392,7 @@
                     allowEmpty: true,
                     tipMsg: '请选择选项',
                     emptyMsg: '请选择选项',
+                    helpBlock: ''
                 }
             },
             choice: {
@@ -381,7 +402,8 @@
                     emptyMsg: '请选择选项',
                     equalMsg: '请选中 %s 个选项',
                     minErrorMsg: '请至少选中 %s 个选项',
-                    maxErrorMsg: '最多只能选中 %s 个选项'
+                    maxErrorMsg: '最多只能选中 %s 个选项',
+                    helpBlock: ''
                 },
                 rules: {
                     equal: '',
@@ -407,7 +429,8 @@
                 param: {
                     allowEmpty: false,
                     tipMsg: '请勾选',
-                    emptyMsg: '请勾选'
+                    emptyMsg: '请勾选',
+                    helpBlock: ''
                 },
                 getVal: function ($field) {
                     let len = $field.filter(':checked').length;
@@ -435,7 +458,7 @@
             let $validFields = $form.find('[data-valid-type]');
             for (let i = 0; i < $validFields.length; i++) {
                 let $field = $validFields.eq(i);
-                if ($field.data('isInit')) {
+                if ($field.data('isInit')) { // 已经初始化，主要使用在单选和多选组里面，避免重复绑定事件
                     continue;
                 }
                 let validType = $field.data('valid-type');
@@ -466,6 +489,14 @@
                 let _triggerEvent = 'blur';
                 let $help, $feedback, inputType, helpCheck = false;
 
+                if (!H.isEmpty(param.helpBlock)) {
+                    let $_help = $(param.helpBlock);
+                    if ($_help.length > 0) {
+                        $help = $_help;
+                        $help.addClass("help-block");
+                    }
+                }
+
                 if ("INPUT" === tagName) {
                     inputType = $field.attr('type');
                     if ('checkbox' === inputType || 'radio' === inputType) {
@@ -481,9 +512,11 @@
                         if ($feedback.length < 1) {
                             $feedback = $('<i class="form-control-feedback fa"></i>').appendTo($box);
                         }
-                        $help = $field.children('.help-block');
-                        if ($help.length < 1) {
-                            $help = $('<div class="help-block">' + fieldOps.placeholder + '</div>').appendTo($box);
+                        if (!$help) {
+                            $help = $field.children('.help-block');
+                            if ($help.length < 1) {
+                                $help = $('<div class="help-block">' + fieldOps.placeholder + '</div>').appendTo($box);
+                            }
                         }
                         $field = $box.find('[name="' + $field.attr('name') + '"]') // 因为 input-radio 和 input-checkbox 是组的概念，将同组都设置为触发器
                             .data('isInit', true); // 防止复选组或单选组多个表单域都设置valid-type的情况被重复初始化
@@ -495,9 +528,11 @@
                     if ($feedback.length < 1) {
                         $feedback = $('<i class="form-control-feedback fa"></i>').insertAfter($field);
                     }
-                    $help = $field.siblings('.help-block');
-                    if ($help.length < 1) {
-                        $help = $('<div class="help-block">' + fieldOps.placeholder + '</div>').insertAfter($feedback);
+                    if (!$help) {
+                        $help = $field.siblings('.help-block');
+                        if ($help.length < 1) {
+                            $help = $('<div class="help-block">' + fieldOps.placeholder + '</div>').insertAfter($feedback);
+                        }
                     }
                     $field.attr('placeholder', fieldOps.placeholder);
                 }
