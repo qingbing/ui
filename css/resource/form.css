@@ -1,3 +1,51 @@
+.form-group>.col-lg-1,
+.form-group>.col-lg-10,
+.form-group>.col-lg-11,
+.form-group>.col-lg-12,
+.form-group>.col-lg-2,
+.form-group>.col-lg-3,
+.form-group>.col-lg-4,
+.form-group>.col-lg-5,
+.form-group>.col-lg-6,
+.form-group>.col-lg-7,
+.form-group>.col-lg-8,
+.form-group>.col-lg-9,
+.form-group>.col-md-1,
+.form-group>.col-md-10,
+.form-group>.col-md-11,
+.form-group>.col-md-12,
+.form-group>.col-md-2,
+.form-group>.col-md-3,
+.form-group>.col-md-4,
+.form-group>.col-md-5,
+.form-group>.col-md-6,
+.form-group>.col-md-7,
+.form-group>.col-md-8,
+.form-group>.col-md-9,
+.form-group>.col-sm-1,
+.form-group>.col-sm-10,
+.form-group>.col-sm-11,
+.form-group>.col-sm-12,
+.form-group>.col-sm-2,
+.form-group>.col-sm-3,
+.form-group>.col-sm-4,
+.form-group>.col-sm-5,
+.form-group>.col-sm-6,
+.form-group>.col-sm-7,
+.form-group>.col-sm-8,
+.form-group>.col-sm-9,
+.form-group>.col-xs-1,
+.form-group>.col-xs-10,
+.form-group>.col-xs-11,
+.form-group>.col-xs-12,
+.form-group>.col-xs-2,
+.form-group>.col-xs-3,
+.form-group>.col-xs-4,
+.form-group>.col-xs-5,
+.form-group>.col-xs-6,
+.form-group>.col-xs-7,
+.form-group>.col-xs-8,
+.form-group>.col-xs-9{padding-left:10px;padding-right:10px;}
 fieldset{min-width:0;padding:0;margin:0;border:0}
 legend{display:block;width:100%;padding:0;margin-bottom:10px;font-size:21px;line-height:inherit;color:#333;border:0;border-bottom:1px solid #e5e5e5}
 label{display:inline-block;max-width:100%;margin-bottom:5px;font-weight:700}
@@ -175,11 +223,11 @@ textarea.input-lg{height:auto}
 .form-horizontal .radio-inline{padding-top:7px;margin-top:0;margin-bottom:0}
 .form-horizontal .checkbox,
 .form-horizontal .radio{min-height:27px}
-.form-horizontal .form-group{/*margin-right:-15px;margin-left:-15px*/}
+.form-horizontal .form-group{/*margin-right:-10px;margin-left:-10px*/}
 @media (min-width:768px){
     .form-horizontal .control-label{padding-top:7px;margin-bottom:0;text-align:right}
 }
-.form-horizontal .has-feedback .form-control-feedback{right:15px}
+.form-horizontal .has-feedback .form-control-feedback{right:10px}
 @media (min-width:768px){
     .form-horizontal .form-group-lg .control-label{padding-top:11px;font-size:18px}
 }

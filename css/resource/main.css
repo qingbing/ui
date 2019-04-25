@@ -22,7 +22,7 @@ a.badge:focus,
 a.badge:hover{color:#fff;text-decoration:none;cursor:pointer}
 
 /* for jquery.alert */
-.alert-box{width:50%;position:absolute;right:0;top:0;padding:10px;}
+.alert-box{width:50%;position:absolute;right:0;top:0;padding:10px;z-index:1001;}
 
 /* page-header */
 .page-header{padding-bottom:9px;margin:40px 0 20px;border-bottom:1px solid #eee;}
