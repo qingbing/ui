@@ -44,7 +44,7 @@ $arr2 = [
     "js/plugins/validate/css/main.css",
 ];
 $arr = $arr1;
-$arr = $arr2;
+//$arr = $arr2;
 $arr = array_unique($arr);
 
 try {
