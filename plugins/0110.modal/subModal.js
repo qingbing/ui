@@ -19,7 +19,7 @@ jQuery(function () {
     });
     // 关闭父页面 modal, 并执行父页面 modal 的回调函数
     $('.MODAL-CLOSE-CALLBACK').click(function (e) {
-        var _data = $(this).data();
+        let _data = $(this).data();
         if (H.isDefined(_data.callback)) {
             _data.callback = H.toJson(_data.callback);
             parent.modal.hide(false, false, _data.callback());
