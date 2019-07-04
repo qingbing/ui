@@ -20,11 +20,12 @@
                 if (H.isDefined(tp)) {
                     return tp;
                 }
+                if (H.isEmpty(op.href)) {
+                    let _h = $trigger.attr('href');
+                    _h && (op.href = _h);
+                }
             } else if (!H.isDefined(op.href)) {
                 return false;
-            } else if (H.isEmpty(op.href)) {
-                let _h = $trigger.attr('href');
-                _h && (op.href = _h);
             }
             // 如果没有标题，不显示关闭按钮
             if (!op.title) {
