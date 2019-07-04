@@ -95,9 +95,7 @@
                 }
             },
             getParams: function ($trigger) {
-                let subOps = $.extend({}, PM.getOption($trigger));
-                subOps.height = L.config.clientH - 100;
-                return subOps;
+                return $.extend({}, PM.getOption($trigger));
             },
             show: function (subOps, $trigger) {
                 if (H.isDefined($trigger)) {
@@ -107,9 +105,12 @@
                     if (!subOps) {
                         return false;
                     }
+                }
+                if (!H.isDefined(subOps.height)) {
                     subOps.height = L.config.clientH - 100;
                 }
                 L.config.$objects.$body.css({
+                    top: ((L.config.clientH - subOps.height) / 2 + 'px'),
                     height: subOps.height
                 });
                 if (subOps.title) {

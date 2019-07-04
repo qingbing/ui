@@ -34,6 +34,7 @@ jQuery(function () {
     $('#JsModal').on('click', function (e) {
         window.modal.open({
             'href': 'inner.html', // 必填参数
+            'height' : '400',
             'closeCallback': 'closeCallback'
         });
     });
