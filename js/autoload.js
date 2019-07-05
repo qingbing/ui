@@ -278,13 +278,13 @@ let Loader = {
 jQuery(document).ready(function ($) {
     // 加载alert组件
     Loader.loadAlert();
+    // modal 组件自动加载
+    Loader.modal($('.w-modal'));
     // 禁用一些class的事件
     $('.divider,.disabled,[disabled]').on('click', function (e) {
         H.preventDefault(e);
         H.stopPropagation(e);
     });
-    // modal 组件自动加载
-    Loader.modal($('.w-modal'));
     // 自动加载组件
     H.each(Loader.configs, function (key, target) {
         let $targets = $(target);
