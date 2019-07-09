@@ -1,3 +1,8 @@
+function beforeCallback(args) {
+    console.log('beforeCallback');
+    return true;
+}
+
 function closeCallback(args) {
     console.log(args);
 }
@@ -27,14 +32,10 @@ $(document).on('click', '.CLOSE_MODAL', function () {
 });
 
 jQuery(function () {
-    setTimeout(function () {
-        $('.w-modal').modal();
-    }, 2000);
-
     $('#JsModal').on('click', function (e) {
         window.modal.open({
             'href': 'inner.html', // 必填参数
-            'height' : '400',
+            'height': 400,
             'closeCallback': 'closeCallback'
         });
     });
