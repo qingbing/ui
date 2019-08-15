@@ -12,9 +12,11 @@
                 openedLabel: '关闭', // 处于打开时显示标签
                 closedLabel: '打开',// 处于关闭时显示标签
                 beforeCallback: undefined, // 打开前执行方法
+                showEvent: 'click', // 展开的方式
                 showType: 'slideDown', // 展开的方式
                 showTime: 750, // 展开的时间（毫秒）
                 afterCallback: undefined, // 打开后执行方法
+                hideEvent: 'click', // 展开的方式
                 hideType: 'slideUp', // 关闭的方式
                 hideTime: 750, // 关闭的时间（毫秒）
                 closeCallback: undefined // 关闭后执行方法
@@ -66,7 +68,12 @@
                 this.func.hide(op, true);
             }
             // 事件绑定
-            $trigger.on('click', L.events.triggerClick);
+            if (op.showEvent === op.hideEvent) {
+                $trigger.on('click', L.events.triggerClick);
+            } else {
+                $trigger.on(op.showEvent, L.events.triggerShow);
+                $trigger.on(op.hideEvent, L.events.triggerHide);
+            }
         },
         func: {
             show: function (op) {
@@ -123,6 +130,18 @@
             }
         },
         events: {
+            triggerShow: function (e) {
+                let $this = $(this);
+                let op = PM.getOption($this);
+                L.func.show(op);
+                op.open = true;
+            },
+            triggerHide: function (e) {
+                let $this = $(this);
+                let op = PM.getOption($this);
+                L.func.hide(op);
+                op.open = false;
+            },
             triggerClick: function (e) {
                 let $this = $(this);
                 let op = PM.getOption($this);

@@ -44,7 +44,7 @@ let ParamsManager = function (wn) {
     /**
      * 获取触发器参数
      * @param $trigger
-     * @returns {boolean}
+     * @returns {object}
      */
     this.getOption = function ($trigger) {
         if (!H.isDefined($trigger)) {
