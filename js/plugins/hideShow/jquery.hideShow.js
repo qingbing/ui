@@ -13,10 +13,10 @@
                 closedLabel: '打开',// 处于关闭时显示标签
                 beforeCallback: undefined, // 打开前执行方法
                 showType: 'slideDown', // 展开的方式
-                showTime: 1500, // 展开的时间（毫秒）
+                showTime: 750, // 展开的时间（毫秒）
                 afterCallback: undefined, // 打开后执行方法
                 hideType: 'slideUp', // 关闭的方式
-                hideTime: 1500, // 关闭的时间（毫秒）
+                hideTime: 750, // 关闭的时间（毫秒）
                 closeCallback: undefined // 关闭后执行方法
             },
             showTypes: ['show', 'slideDown', 'fadeIn'],
