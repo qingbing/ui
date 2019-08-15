@@ -138,6 +138,30 @@ if (typeof md5 === 'undefined'){
             }
             return R;
         },
+        isSet: function (v, range) {
+            if (!H.isObject(range)) {
+                $.alert("isSet 需要指定range对象", 'danger');
+                return false;
+            }
+            for (let i in range) {
+                if (i == v) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        inObject: function (v, range) {
+            if (!H.isObject(range)) {
+                $.alert("inObject 需要指定range对象", 'danger');
+                return false;
+            }
+            for (let i in range) {
+                if (range[i] == v) {
+                    return true;
+                }
+            }
+            return false;
+        },
         each: function (arr, fn) {
             if (VType.isObject(arr)) {
                 for (let i in arr) {
@@ -448,6 +472,8 @@ if (typeof md5 === 'undefined'){
         rand: Unit.rand,
         random: Unit.random,
         ksort: Unit.ksort,
+        isSet: Unit.isSet,
+        inObject: Unit.inObject,
         each: Unit.each,
         hash: Unit.hash,
         toJson: Unit.toObject,

@@ -55,6 +55,10 @@ console.log(H.rand()); // 获取一个16位的随机数
 console.log(H.random(10, 1000)); // 获取一个10到1000之间的随机数（闭区间）
 // 对象排序
 console.log(H.ksort({a: 'a', z: 'a', d: 'a', c: 'a', b: 'd'}));
+// 判断是否在设置键值
+console.log(H.isSet('ka', {'ka':'a', 'kb':'a'}));
+// 判断是否在对象之中
+console.log(H.inObject('a', {'ka':'a', 'kb':'a'}));
 // 数组遍历
 H.each({ssss: '34', '444': 'xxx'}, function (key, val) {
     console.log('' + key + " : " + val);
