@@ -9,16 +9,16 @@
                 postData: undefined, // ajax时的查询参数
                 ajaxCallback: undefined, // ajax 回调后执行的方法
                 openCache: true, // 如果定义ajaxUrl是否缓存
-                openedLabel: '关闭', // 处于打开时显示标签
-                closedLabel: '打开',// 处于关闭时显示标签
+                openChangeLabel: true, // 是否根据打开和关闭的状态切换标签，默认开启
+                openedLabel: '关闭', // 处于打开时显示标签（当 "openChangeLabel" 为 true 有效）
+                closedLabel: '打开',// 处于关闭时显示标签（当 "openChangeLabel" 为 true 有效）
                 beforeCallback: undefined, // 打开前执行方法
-                showEvent: 'click', // 展开的方式
                 showType: 'slideDown', // 展开的方式
                 showTime: 750, // 展开的时间（毫秒）
                 afterCallback: undefined, // 打开后执行方法
-                hideEvent: 'click', // 展开的方式
                 hideType: 'slideUp', // 关闭的方式
                 hideTime: 750, // 关闭的时间（毫秒）
+                isClickTrigger: true, // 是否为 click 方式触发,false 表示 "mouseover" 和 "mouseout"
                 closeCallback: undefined // 关闭后执行方法
             },
             showTypes: ['show', 'slideDown', 'fadeIn'],
@@ -68,11 +68,11 @@
                 this.func.hide(op, true);
             }
             // 事件绑定
-            if (op.showEvent === op.hideEvent) {
+            if (op.isClickTrigger) {
                 $trigger.on('click', L.events.triggerClick);
             } else {
-                $trigger.on(op.showEvent, L.events.triggerShow);
-                $trigger.on(op.hideEvent, L.events.triggerHide);
+                $trigger.on("mouseover", L.events.triggerShow);
+                $trigger.on("mouseout", L.events.triggerHide);
             }
         },
         func: {
@@ -101,10 +101,12 @@
                 // 展示目标
                 op.$target[op.showType](op.showTime);
                 // 设置触发标签
-                if (op.labelMethod === 'val') {
-                    op.$trigger.val(op.openedLabel);
-                } else {
-                    op.$trigger.text(op.openedLabel);
+                if (op.openChangeLabel) {
+                    if (op.labelMethod === 'val') {
+                        op.$trigger.val(op.openedLabel);
+                    } else {
+                        op.$trigger.text(op.openedLabel);
+                    }
                 }
                 // 运行完回调
                 if (H.isFunction(op.afterCallback)) {
@@ -115,10 +117,12 @@
                 // 隐藏目标
                 op.$target[op.hideType](op.hideTime);
                 // 设置触发标签
-                if (op.labelMethod === 'val') {
-                    op.$trigger.val(op.closedLabel);
-                } else {
-                    op.$trigger.text(op.closedLabel);
+                if (op.openChangeLabel) {
+                    if (op.labelMethod === 'val') {
+                        op.$trigger.val(op.closedLabel);
+                    } else {
+                        op.$trigger.text(op.closedLabel);
+                    }
                 }
                 if (init) {
                     return;
