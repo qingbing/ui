@@ -246,7 +246,7 @@ let Loader = {
     dateRange: function ($triggers) {
         this.loadDateRangePicker(function () {
             Loader.__loadPlugin('dateRange',
-                '/plugins/dateRange/jquery.dateRange.js', function () {
+                '/plugins/daterange/jquery.dateRange.js', function () {
                     $triggers.dateRange();
                 });
         });
