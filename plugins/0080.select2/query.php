@@ -6,26 +6,32 @@
  * Version      :   1.0
  */
 
-if (isset($_POST['id'])) {
-    echo json_encode([
-        'code' => 0,
-        'data' => [
-            ['id' => $_POST['id'], 'text' => $_POST['id'] . " - {text}",]
-        ],
-    ]);
-    exit;
+if (isset($_POST['_type'])) {
+    if ('query' === $_POST['_type']) {
+        $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : '';
+        $data = [];
+        for ($i = 0; $i < 10; $i++) {
+            array_push($data, [
+                'id' => "{$i}",
+                'text' => "text-{$i}-{$keyword}",
+            ]);
+        }
+        echo json_encode([
+            'code' => 0,
+            'data' => $data,
+        ]);
+    } else if ('init' === $_POST['_type']) {
+        $R = [];
+        foreach ($_POST['ids'] as $id) {
+            array_push($R, [
+                'id' => $id,
+                'text' => "text - " . $id,
+            ]);
+        }
+        echo json_encode([
+            'code' => 0,
+            'data' => $R,
+        ]);
+    }
 }
 
-$keyword = isset($_POST['keyword']) ? $_POST['keyword'] : 'k111';
-$data = [];
-for ($i = 0; $i < 10; $i++) {
-    $tmp = [
-        'id' => "id{$i}",
-        'text' => "text{$i}-{$keyword}",
-    ];
-    array_push($data, $tmp);
-}
-echo json_encode([
-    'code' => 0,
-    'data' => $data,
-]);

@@ -200,7 +200,7 @@ let Loader = {
     },
     select2: function ($triggers, callback) {
         this.__loadPlugin('select2',
-            '/plugins/select2/select2.min.js', callback, '/plugins/select2/select2.css');
+            '/plugins/select2/js/select2.js', callback, '/plugins/select2/css/select2.min.css');
     },
     select: function ($triggers) {
         this.select2($triggers, function () {
